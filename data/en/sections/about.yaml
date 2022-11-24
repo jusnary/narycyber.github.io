@@ -1,0 +1,54 @@
+section:
+  name: About
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: Information Security Specialist
+# your company information
+#company:
+#  name: Example Co.
+#  url: "https://www.example.com"
+
+# your resume. this file path should be relative to you "static" directory
+resume: "files/resume.pdf"
+
+# a summary about you
+summary: "Information Security Specialist with passion for aligning security architecture plans and processes with security standards and business goals. Experience in web application security testing, vulnerability assessment, penetration testing and report generation"
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+  - name: Github
+    icon: "fab fa-github"
+    url: "https://www.github.com/example"
+
+  - name: linkedin
+    icon: "fa-brands fa-linkedin"
+    url: "https://www.linkedin.com/in/justus-juvenary"
+
+  - name: Twitter
+    icon: "fa-brands fa-twitter"
+    url: "https://twitter.com/jusnaryy"
+# your soft skills
+# give the percentage between 50 to 100 with 5 intervals.
+# currently supported colors: blue, yellow, pink, green, sky, orange
+softSkills:
+  - name: Leadership
+    percentage: 85
+    color: blue
+  - name: Team Work
+    percentage: 90
+    color: yellow
+  - name: Critical thinking
+    percentage: 85
+    color: sky
+  - name: Creativity
+    percentage: 90
+    color: orange
+  - name: Problem solving
+    percentage: 90
+    color: pink
