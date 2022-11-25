@@ -24,7 +24,9 @@ enableEmoji: true
 # Site parameters
 params:
   # GitHub repo URL of your site
-  gitRepo: https://github.com/jusnary/narysec.github.io
+  gitRepo: https://github.com/jusnary/narycyber.github.io
+
+  background: "images/tech2.jpg"
 
   # specify whether you want to write some blog posts or not
   enableBlogPost: true

@@ -11,54 +11,37 @@ section:
 # Your experiences
 experiences:
   - company:
-      name: Example Co.
-      url: "https://www.example.com"
-      location: Dhaka Branch
+      name: Bluebridge Solutions
+      #url: "https://www.example.com"
+      location: Mwenge Dar Es Salaam
       # company overview
-      overview: Example Co. is a widely recognized company for cloud-native development. It builds tools for Kubernetes.
+      overview: Bluebridge Solutions Is the start-up company focused on developing different cutting-edge technological solutions to tackle business and society problems.
     positions:
-      - designation: Senior Software Engineer
-        start: Nov 2019
+      - designation: Chief Technology Officer
+        start: May 2022
         # don't provide end date if you are currently working there. It will be replaced by "Present"
         # end: Dec 2020
         # give some points about what was your responsibilities at the company.
         responsibilities:
-          - Design and develop XYZ tool for ABC task
-          - Design, develop and manage disaster recovery tool [Xtool](https://www.example.com) that backup Kubernetes volumes, databases, and cluster's resource definition.
-          - Lead backend team.
+          - Tested security technologies on regular basis, Completed and submitted monthly and yearly reports to support executive decision making, developed and implemented long-term strategic technological blueprint. These made the company achieve it's key performance indicators ahead the expected time.
 
-      - designation: Junior Software Engineer
-        start: Nov 2017
-        end: Oct 2019
+      - designation: Vulnerability Assessment and Penetration Tester
+        start: April 2021
+        #end: Oct 2019
         responsibilities:
-          - Implement and test xyz feature for abc tool.
-          - Support client for abc tool.
-          - Learn k,d,w technology for xyz.
-
-  - company:
-      name: PreExample Co.
-      url: "https://www.example.com"
-      location: Nowhere
-      overview: PreExample Co. is a gateway company to enter into Example co. So, nothing special here.
-    positions:
-      - designation: Software Engineer
-        start: March 2016
-        end: May 2017
-        responsibilities:
-          - Write lots of example codes.
-          - Read lots of examples.
-          - See lots of example videos.
+          - Attempt to exploit the vulnerabilities in a system to determine whether unauthorised access or other malicious activity is possible
+          - Identifying which flaws pose a threat to the application
+          - Alerteting the development team to the preexisting flaws in their code and where they are located
+          - This ensures the SDLC of inhouse products observes the SSDF.
 
   - company:
-      name: Intern Counting Company (ICC).
-      url: "https://www.example.com"
-      location: Intern Land
-      overview: Intern counting Company (ICC) is responsible for counting worldwide intern Engineers.
+      name: TYD Innovation Incubator
+      url: "https://tyd.or.tz/"
+      location: Ilala Dar Es Salaam
+      overview: TYD Innovation Incubator is a Start-up Innovation Incubator with the solely purpose of providing mentorship to youths who aspire to become outstandingly competent thus enormously contribute to Tanzania's Socio-economic development.
     positions:
-      - designation: Intern
-        start: Jun 2015
-        end: Jan 2016
+      - designation: Junior System Developer
+        start: June 2018
+        end: July 2020
         responsibilities:
-          - Count lost of interns.
-          - Count more interns.
-          - Count me as an intern.
+          - Created a back-end of an online platform that enables students from different Tertiary level educational institutions acquire practical training attachments called [prasdel](https://www.prasdel.co.tz/). This helped the system solve the challenges of students acquiring Organisations for Field / Internship / Volunteer Work as well as Organisations recruiting for Suitable Candidates for the same.

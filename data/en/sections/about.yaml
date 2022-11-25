@@ -22,6 +22,10 @@ summary: "Information Security Specialist with passion for aligning security arc
 # your social links
 # give as many as you want. use font-awesome for the icons.
 socialLinks:
+  - name: Email
+    icon: "fas fa-envelope"
+    url: "jusnary1@gmail.com"
+
   - name: Github
     icon: "fab fa-github"
     url: "https://www.github.com/example"
@@ -40,6 +44,7 @@ softSkills:
   - name: Leadership
     percentage: 85
     color: blue
+
   - name: Team Work
     percentage: 90
     color: yellow
