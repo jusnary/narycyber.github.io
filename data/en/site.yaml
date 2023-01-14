@@ -22,7 +22,7 @@ customMenus:
 
 # Specify OpenGraph Headers
 openGraph:
-  title: Justus' Blog
+  title: Welcome to Justus' Blog
   type: website
   description: Portfolio and personal blog of Justus Juvenary.
   image: images/author/john.png

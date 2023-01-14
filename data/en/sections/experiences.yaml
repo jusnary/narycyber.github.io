@@ -11,28 +11,31 @@ section:
 # Your experiences
 experiences:
   - company:
-      name: Bluebridge Solutions
+      name: CARRY Popote-Chochote
       #url: "https://www.example.com"
       location: Mwenge Dar Es Salaam
       # company overview
-      overview: Bluebridge Solutions Is the start-up company focused on developing different cutting-edge technological solutions to tackle business and society problems.
+      overview: An IT Solutions and Technology company. 
     positions:
       - designation: Chief Technology Officer
         start: May 2022
         # don't provide end date if you are currently working there. It will be replaced by "Present"
-        # end: Dec 2020
+         end: Dec 2022
         # give some points about what was your responsibilities at the company.
         responsibilities:
-          - Tested security technologies on regular basis, Completed and submitted monthly and yearly reports to support executive decision making, developed and implemented long-term strategic technological blueprint. These made the company achieve it's key performance indicators ahead the expected time.
+          - Spearheaded monthly and yearly reporting to support executive decision-making.
+          - Developed and implemented a long-term security strategic technology plan.
+          - Testing and implementing new technology.
 
-      - designation: Vulnerability Assessment and Penetration Tester
+      - designation: Penetration Tester
         start: April 2021
-        #end: Oct 2019
+        end: June 2022
         responsibilities:
-          - Attempt to exploit the vulnerabilities in a system to determine whether unauthorised access or other malicious activity is possible
-          - Identifying which flaws pose a threat to the application
-          - Alerteting the development team to the preexisting flaws in their code and where they are located
-          - This ensures the SDLC of inhouse products observes the SSDF.
+          - Conducting full penetration testing exercises.
+          - Running regular vulnerability scans.
+          - Encouraging stronger security culture.
+          - Fostering a secure software development framework and training developers on secure coding best practice.
+          - Alerting the development teams about flaws and vulnerabilities.
 
   - company:
       name: TYD Innovation Incubator
@@ -44,4 +47,5 @@ experiences:
         start: June 2018
         end: July 2020
         responsibilities:
-          - Created a back-end of an online platform that enables students from different Tertiary level educational institutions acquire practical training attachments called [prasdel](https://www.prasdel.co.tz/). This helped the system solve the challenges of students acquiring Organisations for Field / Internship / Volunteer Work as well as Organisations recruiting for Suitable Candidates for the same.
+          - Created a backend online platform called Prasdel with Lavavel, MySQL, and Apache2.
+          - Enabled students to acquire practical training and attachments.
