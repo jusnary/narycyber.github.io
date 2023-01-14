@@ -20,7 +20,7 @@ experiences:
       - designation: Chief Technology Officer
         start: May 2022
         # don't provide end date if you are currently working there. It will be replaced by "Present"
-         end: Dec 2022
+        end: Dec 2022
         # give some points about what was your responsibilities at the company.
         responsibilities:
           - Spearheaded monthly and yearly reporting to support executive decision-making.
