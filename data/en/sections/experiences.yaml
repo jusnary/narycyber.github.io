@@ -26,6 +26,10 @@ experiences:
           - Spearheaded monthly and yearly reporting to support executive decision-making.
           - Developed and implemented a long-term security strategic technology plan.
           - Testing and implementing new technology.
+          - Communicated technical vulnerabilities and remediation steps to developers and management.
+          - Built and maintained partnerships with technology vendors to ensure access to latest technology and support.
+          - Developed and implemented company's technology vision to align with overall goals and objectives.
+          - Provided technology guidance to CEO to align technology strategy with overall goals and objectives.
 
       - designation: Penetration Tester
         start: April 2021
@@ -36,6 +40,7 @@ experiences:
           - Encouraging stronger security culture.
           - Fostering a secure software development framework and training developers on secure coding best practice.
           - Alerting the development teams about flaws and vulnerabilities.
+          - Worked with application developers to validate, assess, understand root cause and mitigate vulnerabilities.
 
   - company:
       name: TYD Innovation Incubator

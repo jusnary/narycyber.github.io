@@ -11,16 +11,33 @@ section:
 # Your Skills.
 # Give a summary of you each skill in the summary section.
 skills:
-  - name: Linux
-    logo: "/images/sections/skills/linux.png"
-    summary: "Proficient in Linux operating system"
-    url: "https://www.kali.org/"
 
-  - name: Python
-    logo: images/sections/skills/python.jpg
-    summary: "Using as the main language for professional development. Capable of writing scalable, testable, and maintainable program."
-    url: "https://www.python.org/"
+  - name: Penetration testing 
+    logo: images/sections/skills/pentest.png
+    summary: "Perform simulated cyberattacks used to assess an organisation’s security infrastructure including web-based applications, systems, and networks to detect actual and potential vulnerabilities."
+    #url: "https://www.python.org/"
 
   - name: Api security
     logo: "/images/sections/skills/api-picture.png"
-    summary: "Able to perfom API penetration testing from API reconnaissance, end point analysis, API authentication attacks, Exploiting API authorization, testing for improper asset management to injection attacks "
+    summary: "Experienced in API security with expertise in identifying and mitigating vulnerabilities in API systems using industry-standard best practices, testing tools, and encryption protocols. "
+
+  - name: Familiarity with penetration testing tools 
+    #logo: "/images/sections/skills/linux.png" 
+    summary: "Knowledge and experience using various penetration testing tools such as Nmap, Metasploit, Burp Suite, Nessus, OWASP- ZAP, Wireshark, Hydra, Sqlmap and John-Ripper"
+    #url: "https://www.kali.org/" 
+  
+  - name: Proficient in Kali linux and Python
+    #logo: images/sections/skills/python.jpg
+    summary: "Kali Linux and Python for penetration testing and vulnerability identification, including proficiency in scripting, and automation. I am able to apply my knowledge of these technologies to identify vulnerabilities and provide actionable solutions to mitigate them."
+    url: "https://www.python.org/"
+
+  - name: Reporting and communication
+    #logo: "/images/sections/skills/linux.png"
+    summary: "Strong written and verbal communication skills to document and report the results of penetration testing to stakeholders in a clear, concise and actionable manner."
+    #url: "https://www.kali.org/"
+
+  - name: Strong analytical and problem-solving skills
+    #logo: images/sections/skills/python.jpg
+    summary: "Ability to analyze and interpret security testing results, and to identify and prioritize vulnerabilities based on their level of risk."
+    #url: "https://www.python.org/"
+
