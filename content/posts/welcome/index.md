@@ -16,7 +16,7 @@ categories: ["Basic"]
 ## Penetration testing,
 also known as "ethical hacking," is the process of simulating an attack on a computer system, network, or web application to evaluate its security. It is a crucial aspect of cybersecurity and helps organisations identify vulnerabilities and weaknesses before they can be exploited by malicious actors.
 
-#### As a penetration tester
+## As a penetration tester
 I will be sharing my journey and experiences as I tackle various online challenges and CTFs. I will provide detailed walkthroughs and write-ups of my process, including the tools and techniques used, so that you can learn and apply the same skills. Additionally, I will also share my knowledge about red teaming, which is a form of penetration testing that simulates advanced persistent threats(APT) and is used to test the overall security posture of an organisation.
 
 Whether you are a seasoned professional or just getting started in the field, I hope you will find the content on my blog informative and valuable. I will be updating the blog regularly with new challenges, so be sure to check back often. I also encourage you to share your own insights and experiences by reaching out of my provided social accounts, and to let me know if there are any specific topics you would like me to cover.
