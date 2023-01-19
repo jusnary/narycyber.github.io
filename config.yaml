@@ -19,12 +19,11 @@ markup:
     ordered: false
 
 # Enable global emoji support
-enableEmoji: true
+enableEmoji: false
 
 # Site parameters
 params:
   # GitHub repo URL of your site
-  gitRepo: https://github.com/jusnary/narycyber.github.io
 
   background: "images/tech2.jpg"
 
@@ -32,8 +31,13 @@ params:
   enableBlogPost: true
 
   # specify whether you want to show Table of Contents in reading page
-  enableTOC: false
-
+  enableTOC: true
+  
+  #enable dark mode
+  darkMode:
+    enable: true
+    provider: darkreader
+    default: system
   # Provide newsletter configuration. This feature hasn't been implemented yet.
   # Currently, you can just hide it from the footer.
   newsletter:
