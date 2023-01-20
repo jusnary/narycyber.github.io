@@ -35,7 +35,7 @@ params:
   
   #enable dark mode
   darkMode:
-    enable: true
+    enable: false
     provider: darkreader
     default: system
   # Provide newsletter configuration. This feature hasn't been implemented yet.
