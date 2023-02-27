@@ -39,8 +39,8 @@ A service is a program that runs in the background on a Windows system, and it c
 - To stop a service: `net stop <service name>`
 
 
-`Note:` To follow along or get the best out of this blog, please check how to set up a [virtual lab](/content/posts/Privilege_Escalation/Windows_PrivEsc/introduction/) that we are going to be using. After having your lab set up, now let's go through each type of service misconfiguration.
- 
+`Note:` To follow along or get the best out of this blog, please check how to set up a [virtual lab](https://www.narycyber.com/posts/privilege_escalation/windows_privesc/introduction/) that we are going to be using. After having your lab set up, now let's go through each type of service misconfiguration.
+
 
 &nbsp;  
 
@@ -83,7 +83,7 @@ In the above screenshot, we can see `daclsvc service` can be modified. This can 
 
 ##### Step 3
 
-Verify if the above service is modifiable with accesschk. For more about accesschk tool and how to use it, please check accesschk write-up.
+Verify if the above service is modifiable with accesschk. For more about accesschk tool and how to use it, please check **[accesschk](https://www.narycyber.com/posts/toolkit/accesschk.exe/)** write-up.
 
 Run this command to check more info about the service `.\accesschk.exe -uwcqv user daclsvc`
 
