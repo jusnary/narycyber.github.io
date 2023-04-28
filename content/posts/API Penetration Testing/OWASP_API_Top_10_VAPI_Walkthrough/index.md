@@ -316,7 +316,7 @@ Here's a screenshot of the Postman showing the account creation and response:
 -   Put the Authorization-Token in the {api5_key} value. The token is the base64 encode of `username:password`. Change the username and password details to the details you used to create the account. You can use an online application to base64 encode the login credentials, or you can use the Linux command `echo -n "username:password" | base64`.
 ![base64-example](base64-example.png)
 Copy the token above and put it in the Authorization-Token value, then send the request.
-![[Pasted image 20230419141558.png]]
+![api6-token](api6-token.png)
 As we can see from the above, 
 -   We can see that we have our account details.
 -   We are authenticated, and to access our data, we have to provide the username and password.
@@ -386,7 +386,7 @@ The request and response on postman
 
 
 The request and response in Burp suite
-![[Pasted image 20230419143922.png]]
+![burp-credit20](burp-credit20.png)
 From the above,
 - We got the 200 response, meaning the request was successful
 - The id is 4
@@ -466,7 +466,7 @@ Request and response in Burp suite
 ![api7-get-key](api7-get-key.png)
 
 Request and response in Postman
-![[Pasted image 20230419151420.png]]
+![api7-postman](api7-postman.png)
 From the above response, 
 - There are two most important pieces of information: `Access-Control Allow-Origin *` and `Access-Control Allow-Credentials: true`.
 ![cors-null](cors-null.png)
