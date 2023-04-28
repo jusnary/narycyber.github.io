@@ -314,4 +314,4 @@ Create DLL reverse shell in Linux using this command
  In the above output, we can see we have successfully escalated our privileges.
 
 
-Congratulations for making it to the end of this lengthy post. The above step-by-step explanation of how to exploit service misconfigurations can be used on any Windows system, but to get the best out of this write-up, we used this lab.
+Congratulations for making it to the end of this lengthy post. The above step-by-step explanation of how to exploit service misconfigurations can be used on any Windows system. To deepen your knowledge, check out TIb3rius course called **Windows Privilege Escalation for OSCP & Beyond!**

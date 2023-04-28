@@ -6,7 +6,7 @@ menu:
   sidebar:
     name: Hey, Welcome
     identifier: welcome
-    weight: 10
+    weight: 9
 tags: ["Basic"]
 categories: ["Basic"]
 ---

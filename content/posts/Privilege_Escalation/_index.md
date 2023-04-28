@@ -4,5 +4,5 @@ menu:
   sidebar:
     name: Privilege Escalation
     identifier: privilege_escalation
-    weight: 20
+    weight: 12
 ---
