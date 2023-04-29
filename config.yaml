@@ -32,7 +32,13 @@ params:
 
   # specify whether you want to show Table of Contents in reading page
   enableTOC: true
-
+  
+  #analytics.
+  features:
+    analytics:
+      enabled: true
+      google:
+        id: G-1QLV0H8G51
   
   #enable dark mode
   darkMode:

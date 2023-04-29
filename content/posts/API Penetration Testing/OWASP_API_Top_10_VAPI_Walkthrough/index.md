@@ -315,7 +315,8 @@ Here's a screenshot of the Postman showing the account creation and response:
 -   Use the ID from the account creation response and put it in the ID placeholder in the request `GET /vapi/api5/user/2`.
 -   Put the Authorization-Token in the {api5_key} value. The token is the base64 encode of `username:password`. Change the username and password details to the details you used to create the account. You can use an online application to base64 encode the login credentials, or you can use the Linux command `echo -n "username:password" | base64`.
 ![base64-example](base64-example.png)
-Copy the token above and put it in the Authorization-Token value, then send the request.
+
+Copy the token above and put it in the Authorization-Token value field, then send the request.
 ![api6-token](api6-token.png)
 As we can see from the above, 
 -   We can see that we have our account details.
