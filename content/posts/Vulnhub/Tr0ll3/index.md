@@ -73,8 +73,10 @@ The file seems as the list of different password.
 
 Step to crack. 
 
-Time to use aircrack-ng to crack the password. gaUoCe34t1
+Time to use aircrack-ng to crack the password. 
+`aircrack-ng -w gold_star.txt wytshadow.cap ` 
 ![[Pasted image 20230416232229.png]]
+From the above output, the password is gaUoCe34t1.
 
 ![[Pasted image 20230416232410.png]]
 
