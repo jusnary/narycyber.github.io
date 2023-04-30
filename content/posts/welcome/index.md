@@ -7,8 +7,7 @@ menu:
     name: Hey, Welcome
     identifier: welcome
     weight: 9
-tags: ["Basic"]
-categories: ["Basic"]
+
 ---
 ## Welcome
  Are you fascinated by the world of cybersecurity and the art of penetration testing? Look no further! Here, I document my journey as a penetration tester as I solve online cybersecurity challenges and share my knowledge and experiences with the community. This journey is not only a way for me to learn more about the field, but also an opportunity for me to help others learn and grow in their understanding of cybersecurity.
