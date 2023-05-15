@@ -5,7 +5,7 @@ menu:
   sidebar:
     name: Service Misconfiguration
     identifier: service_missiconfig
-    parent: windows_privesc
+    parent: windows
     weight: 10
 draft: false
 ---
@@ -17,6 +17,7 @@ A service is a program that runs in the background on a Windows system, and it c
 
 **In this blog post, we'll discuss these Service Misconfigurations:**
 ```
+
 1.  Insecure Service Properties
 2.  Unquoted Service Path
 3.  Weak Registry Permissions

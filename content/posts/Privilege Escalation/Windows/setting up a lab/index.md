@@ -5,7 +5,7 @@ menu:
   sidebar:
     name: Setting Up a lab
     identifier: setting_up_a_lab
-    parent: windows_privesc
+    parent: windows
     weight: 1
 draft: false
 ---
@@ -51,14 +51,14 @@ Log in to the Windows 10 machine and perform the following:
 
 `python /usr/share/doc/python3-impacket/examples/smbserver.py tools .`
 
-![screenshot_for_tools](Screenshotfrom2023-02-1415-07-20.png)
+![screenshot_for_tools](narycyber.github.io/content/posts/Privilege%20Escalation/Windows/setting%20up%20a%20lab/Screenshotfrom2023-02-1415-07-20.png)
 *The above screenshot shows tools in my kali machine.* 
 
 
 &nbsp;  
 
 
-![python_command](Screenshotfrom2023-02-1415-07-59.png) 
+![python_command](narycyber.github.io/content/posts/Privilege%20Escalation/Windows/setting%20up%20a%20lab/Screenshotfrom2023-02-1415-07-59.png) 
 The above screenshot shows the python command to setup smb server. 
 
 &nbsp;  

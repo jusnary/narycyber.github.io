@@ -32,6 +32,8 @@ params:
 
   # specify whether you want to show Table of Contents in reading page
   enableTOC: true
+
+  enableNotes: false
   
   #analytics.
   features:

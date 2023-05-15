@@ -15,7 +15,7 @@ First step.
 Recon
 Once you first run the tr0ll3 machine in the VM, it displays the following welcome message
 ![welcome_message](welcome_message.png)
-According to the message that the machine displays, Logins are `start:here`
+According to the message that the machine displays, Logins credentials are `start:here`
 
 Get the IP address.
 From the linux machine, run `netdiscover` command to discover the ip address of the Tr0ll3. 
@@ -58,29 +58,45 @@ Investigate the files we downloaded
 
 The first file is `wytshadow.cap` and we can use wireshark or tcpdump to analyse this file. 
 let's read the file using `tcpdump` 
-Run ` tcpdump -nnttttAr wytshadow.cap | less` (The `-nn` , port number shouldn't resolve to the names, `tttt` means show the date into human readable format)
-![[Pasted image 20230416230211.png]]
 
+Run ` tcpdump -nnttttAr wytshadow.cap | less` 
+(The `-nn` , port number shouldn't resolve to the names, `tttt` means show the date into human readable format)
+
+![[Pasted image 20230416230211.png]]
+- From the above output, we have Initializaiton vector used in a encryption of wireless network.
 Let's use wireshark
 ![[Screenshot from 2023-04-16 23-00-45.png]]
 
-From `tcpdump` and `wireshark`, we can see `Data IV / 802.11` which means the packet is carrying wireless key/password. 
+From `tcpdump` and `wireshark`, we can see `Data IV / 802.11` which means the packet is carrying encryption keys.
 
 
 The second file `gold_star.txt`
 ![[Pasted image 20230416230756.png]]
-The file seems as the list of different password. 
+The file seems like different passwords. Which means gold_star.txt is the wordlist. 
 
-Step to crack. 
+Step --
+Since we have the .cap file and a wordlist, let's use aircrack-ng to crack the password.
 
-Time to use aircrack-ng to crack the password. 
 `aircrack-ng -w gold_star.txt wytshadow.cap ` 
+
 ![[Pasted image 20230416232229.png]]
 From the above output, the password is gaUoCe34t1.
 
+Step ---
+Since the we had two files wytshadow.cap and gold_star, we can assume wytshadow is the name. Let's use ssh to login into the machine.
+`ssh wytshadow@192.168.111.62` and password is `gaUoCe34t1.`
 ![[Pasted image 20230416232410.png]]
+- We successfully loged in the system. 
 
+Step ---
+Time to look around and gather infomation about the user. Like listing files by using `ls`
 ![[Pasted image 20230416232516.png]]
+- From the above output, there is `oohfun` file. 
+- Run `file` command followed with the name of the file to see the type of file. From the above output of the `file oohfun` command, we see it's executable.
+- Execute the file. `./oohfun`
+- As we see from the above output, the file just prints `iM Cr@zY Lik3 AAA LYNX` mutliple times.
+- Wh
+
 
 ![[Pasted image 20230416232616.png]]
 

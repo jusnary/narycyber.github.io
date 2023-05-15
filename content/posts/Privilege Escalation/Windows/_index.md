@@ -1,9 +1,9 @@
 ---
-title: "Windows PrivEsc"
+title: "Windows"
 menu:
   sidebar:
-    name: Windows PrivEsc
-    identifier: windows_privesc
+    name: Windows
+    identifier: windows
     parent: privilege_escalation
     weight: 10
 draft: false
