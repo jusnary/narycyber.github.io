@@ -3,13 +3,29 @@ section:
   name: Experiences
   id: experiences
   enable: true
-  weight: 3
+  weight: 4
   showOnNavbar: true
   # Can optionally hide the title in sections
   # hideTitle: true
 
 # Your experiences
 experiences:
+  - company:
+      name: CyberProtect-Africa
+      url: "https://cyberprotectafrica.com/"
+      location: Kaluta street, Kisutu Dar es salaam
+      overview: CyberProtect Africa offers tailored cybersecurity training and awareness solutions for organizations across Africa. We ensure your protection through employee training, simulated attacks, and personalized recommendations, keeping your business safe from cyber threats.
+    positions:
+      - designation: Information Security Manager
+        start: January 2023
+        #end: March 2021
+        responsibilities:
+          - Develop and implement security policies and procedures.
+          - Assisting companies in achieving compliance with PCI DSS, GDPR, and HIPAA.
+          - Conduct regular security and risk assessments for different Organisations.
+          - Create cybersecurity training and awareness materials for different industries.
+          - Create simulated phishing attacks to test employee awareness.
+          - Foster a culture of innovation and stay up-to-date with industry trends
   - company:
       name: CARRY Popote-Chochote
       #url: "https://www.example.com"
@@ -49,8 +65,8 @@ experiences:
       overview: TYD Innovation Incubator is a Start-up Innovation Incubator with the solely purpose of providing mentorship to youths who aspire to become outstandingly competent thus enormously contribute to Tanzania's Socio-economic development.
     positions:
       - designation: Junior System Developer
-        start: June 2018
-        end: July 2020
+        start: June 2019
+        end: March 2021
         responsibilities:
           - Created a backend online platform called Prasdel with Lavavel, MySQL, and Apache2.
           - Enabled students to acquire practical training and attachments.

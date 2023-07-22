@@ -31,13 +31,9 @@ skills:
     summary: "Kali Linux and Python for penetration testing and vulnerability identification, including proficiency in scripting, and automation. I am able to apply my knowledge of these technologies to identify vulnerabilities and provide actionable solutions to mitigate them."
     url: "https://www.python.org/"
 
-  - name: Reporting and communication
-    #logo: "/images/sections/skills/linux.png"
-    summary: "Strong written and verbal communication skills to document and report the results of penetration testing to stakeholders in a clear, concise and actionable manner."
-    #url: "https://www.kali.org/"
-
-  - name: Strong analytical and problem-solving skills
-    #logo: images/sections/skills/python.jpg
-    summary: "Ability to analyze and interpret security testing results, and to identify and prioritize vulnerabilities based on their level of risk."
-    #url: "https://www.python.org/"
+  - name: DevSecOps
+    summary: "secure coding, vulnerability management, security automation, CI/CD integration, threat modeling, security testing, compliance knowledge, cloud security, secure infrastructure design, incident response, and security monitoring."
+  
+  - name: ITIL 4 Framework
+    summary: "Service management practices, strategic planning, service design, service transition, service operation, continual improvement, and fostering a culture of collaboration and customer-centricity"
 

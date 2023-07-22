@@ -7,7 +7,7 @@ section:
   template: sections/about.html
 
 # your designation
-designation: Information Security Specialist
+designation: Cybersecurity Researcher | Information Seucurity Officer
 # your company information
 #company:
 #  name: Example Co.
@@ -17,7 +17,9 @@ designation: Information Security Specialist
 resume: "files/resume.pdf"
 
 # a summary about you
-summary: "I am an intermediate Information Security Specialist with experience in penetration testing. I have a strong understanding of industry-standard methodologies and tools, and am able to identify and mitigate vulnerabilities in systems, networks, and web applications. I possess strong analytical, communication, and problem-solving skills, and am familiar with industry standards and regulations such as OWASP, OSSTMM, and NIST. I am eager to continue to expand my knowledge and skills in the field and contribute to the security of a company's infrastructure."
+summary: "I'm Justus Juvenary, a dedicated and results-driven cybersecurity professional with a Bachelor's degree in information security and over two years of industry experience. Skilled in web application security, API penetration testing, DevSecOps, risk assessments, and compliance frameworks like GDPR, PCI DSS, and HIPAA. Beyond my professional work, I share my knowledge and insights through this blog focused on offensive security, contributing to the industry's collective knowledge. I enjoy learning from other professionals, believing in the power of collaboration and continuous improvement.
+
+\nDriven by my passion for cybersecurity, I constantly enhance my skills to stay ahead. With expertise in penetration testing, I proactively identify vulnerabilities and secure systems, always seeking ways to become better at what I do. I am eager to connect and collaborate with industry professionals, learning from their experiences and expertise. Together, we can advance cybersecurity practices and build a secure future. Let's connect and explore how I can contribute to your organization's security initiatives."
 
 # your social links
 # give as many as you want. use font-awesome for the icons.
@@ -43,17 +45,25 @@ socialLinks:
 softSkills:
   - name: Leadership
     percentage: 85
-    color: blue
-
+    color: yellow
   - name: Team Work
     percentage: 90
-    color: yellow
+    color: green
   - name: Critical thinking
     percentage: 85
-    color: sky
+    color: yellow
   - name: Creativity
     percentage: 90
     color: orange
   - name: Problem solving
     percentage: 90
     color: pink
+  - name: Strong Analytical
+    perentage: 92
+    color: blue 
+  - name: Reporting
+    percentange: 90
+    color: green
+  - name: Communication
+    percentage: 90
+    color: blue
