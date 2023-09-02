@@ -16,16 +16,15 @@ experiences:
       location: Kaluta street, Kisutu Dar es salaam
       overview: CyberProtect Africa offers tailored cybersecurity training and awareness solutions for organizations across Africa. We ensure your protection through employee training, simulated attacks, and personalized recommendations, keeping your business safe from cyber threats.
     positions:
-      - designation: Information Security Manager
+      - designation: Cybersecurity Lead
         start: January 2023
         #end: March 2021
         responsibilities:
-          - Develop and implement security policies and procedures.
-          - Assisting companies in achieving compliance with PCI DSS, GDPR, and HIPAA.
-          - Conduct regular security and risk assessments for different Organisations.
-          - Create cybersecurity training and awareness materials for different industries.
-          - Create simulated phishing attacks to test employee awareness.
-          - Foster a culture of innovation and stay up-to-date with industry trends
+          - Policy & Compliance. Develop and implement tailored security policies to ensure compliance with standards like PCI DSS, GDPR, and HIPAA. This minimises legal risks and enhances business credibility.
+          - Risk Assessment. Conduct precise security assessments, including web app penetration testing, API penetration testing, and penetration testing, pinpointing vulnerabilities. Clients' assets remain secure, reducing the potential for costly breaches.
+          - Training & Awareness. Create industry-specific training materials and programs, also available in local languages. This empowers client teams, reduces security incidents, and has successfully reduced the two most prevalent cyberattacks in Africa, phishing and business email compromise, along with other forms of social engineering attacks
+          - Phishing Testing. Execute targeted phishing simulations to enhance employee awareness. This results in employees becoming more vigilant, which leads to fewer successful phishing attempts, significantly reducing the risk of data breaches.
+          - Innovation & Trends. Foster innovation and stay updated on emerging trends. Proactive measures keep clients ahead of evolving threats, safeguarding their operations.
   - company:
       name: CARRY Popote-Chochote
       #url: "https://www.example.com"
@@ -33,30 +32,30 @@ experiences:
       # company overview
       overview: An IT Solutions and Technology company. 
     positions:
-      - designation: Chief Technology Officer
-        start: May 2022
+      - designation: Technical Lead
+        start: Nov 2021
         # don't provide end date if you are currently working there. It will be replaced by "Present"
         end: Dec 2022
         # give some points about what was your responsibilities at the company.
         responsibilities:
-          - Spearheaded monthly and yearly reporting to support executive decision-making.
-          - Developed and implemented a long-term security strategic technology plan.
-          - Testing and implementing new technology.
-          - Communicated technical vulnerabilities and remediation steps to developers and management.
-          - Built and maintained partnerships with technology vendors to ensure access to latest technology and support.
-          - Developed and implemented company's technology vision to align with overall goals and objectives.
-          - Provided technology guidance to CEO to align technology strategy with overall goals and objectives.
+          - Technology Planning. Developed and executed a comprehensive long-term security strategic technology plan, aligning our IT initiatives with the company's vision of reliable and secure parcel delivery. Additionally, I took on the role of Scrum Master, facilitating collaboration between our app development team and a startup management team with diverse backgrounds.
+          
+          - Vendor Partnerships and Payment Gateway Implementation. I was responsible for negotiating with various API providers for seamless collection from customers and disbursement of payments to drivers. This strategic effort resulted in the selection of the most suitable API provider. I worked closely with this provider and our development team to successfully implement a robust payment gateway within the app, enhancing our payment processing capabilities and customer experience.
+          - Compliance Implementation (GDPR and PCI DSS). Collaborated extensively with the chosen payment gateway API provider and our internal development team to ensure GDPR and PCI DSS compliance within our app. This included rigorous assessments and adjustments to data handling and security measures, strengthening our commitment to safeguarding customer data and maintaining regulatory compliance.
+          - Technology Innovation. Successfully tested and implemented new technologies to improve the performance and user experience of our parcel delivery app, ensuring swift and secure deliveries.
+          - CEO Guidance. Provided crucial technology guidance to the CEO, ensuring that our technology strategy seamlessly integrated with the company's mission of efficient and secure parcel delivery.
+          - Technology Alignment. Aligned the company's technology vision with its overarching goals and objectives, ensuring that our app-driven parcel delivery services remained at the forefront of the industry.
 
       - designation: Penetration Tester
         start: April 2021
-        end: June 2022
+        end: Dec 2022
         responsibilities:
-          - Conducting full penetration testing exercises.
-          - Running regular vulnerability scans.
-          - Encouraging stronger security culture.
-          - Fostering a secure software development framework and training developers on secure coding best practice.
-          - Alerting the development teams about flaws and vulnerabilities.
-          - Worked with application developers to validate, assess, understand root cause and mitigate vulnerabilities.
+          - Penetration Testing. Conducting thorough penetration testing exercises tailored to our delivery app to identify vulnerabilities and enhance its security. 
+          - Security Reports. Providing detailed vulnerability reports and recommending remediation strategies specific to our delivery platform, ensuring the continued reliability of our services.
+          - Security Culture. Encouraging a stronger security culture within our technical teams to safeguard the integrity of our app and customer data.
+          - Secure Software Development. Promoting a secure software development framework for our app and training our developers in secure coding best practices to prevent disruptions in parcel deliveries.
+          - Flaw Alerting. Promptly alerting our development teams about any identified flaws or vulnerabilities that could affect the seamless operation of our delivery app.
+  
 
   - company:
       name: TYD Innovation Incubator
