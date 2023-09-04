@@ -53,17 +53,17 @@ softSkills:
     percentage: 85
     color: yellow
   - name: Creativity
-    percentage: 90
+    percentage: 98
     color: orange
   - name: Problem solving
-    percentage: 90
+    percentage: 98
     color: pink
   - name: Strong Analytical
-    perentage: 92
+    perentage: 98
     color: blue 
   - name: Reporting
-    percentange: 90
+    percentange: 98
     color: green
   - name: Communication
-    percentage: 90
+    percentage: 98
     color: blue
