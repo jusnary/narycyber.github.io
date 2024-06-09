@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>OWASP API Security Top 10 via VAPI Walkthrough</title>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="/application.56db8f450c98e200698def311092699a83c036dcc75dfef2c8f412f8f80c47af.css" integrity="sha256-VtuPRQyY4gBpje8xEJJpmoPANtzHXf7yyPQS&#43;PgMR68=" />
+
+
+
+
+
+<meta property="og:title" content="OWASP API Security Top 10 via VAPI Walkthrough" />
+<meta property="og:description" content="According to a Gartner report in 2020 APIs account for 90% of the attack surface and are the most frequent attack vector.
+APIs often handle sensitive data, such as personal information, financial data, and intellectual property. If an API is not properly secured, this data can be easily accessed and stolen by hackers. In fact, some of the recent big data breaches have been due to under-protected APIs.
+In this blog post, I am going to discuss OWASP top 10 API 2019 vulnerabilities by using VAPI." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-28T16:13:35+03:00" />
+<meta property="article:modified_time" content="2023-04-28T16:13:35+03:00" />
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="OWASP API Security Top 10 via VAPI Walkthrough"/>
+<meta name="twitter:description" content="According to a Gartner report in 2020 APIs account for 90% of the attack surface and are the most frequent attack vector.
+APIs often handle sensitive data, such as personal information, financial data, and intellectual property. If an API is not properly secured, this data can be easily accessed and stolen by hackers. In fact, some of the recent big data breaches have been due to under-protected APIs.
+In this blog post, I am going to discuss OWASP top 10 API 2019 vulnerabilities by using VAPI."/>
+
+    
+    
+<meta name="description" content="OWASP API Security Top 10 via VAPI Walkthrough" />
+
+
+    
+
+    
+        
+            
+            
+                
+                
+                
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1QLV0H8G51"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-1QLV0H8G51', { 'anonymize_ip': false });
+}
+</script>
+
+            
+
+            
+            
+
+            
+            
+
+            
+            
+
+            
+
+            
+        
+    
+
+
+
+
+<script>
+      theme = localStorage.getItem('darkmode:color-scheme') || 'system';
+      if (theme == 'system') {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          theme = 'dark';
+        } else {
+          theme = 'light';
+        }
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+  </head>
+
+  <body class="type-posts kind-page" data-bs-spy="scroll" data-bs-target="#TableOfContents" data-bs-offset="80">
+    <div class="container-fluid bg-secondary wrapper">
+      
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-xl top-navbar shadow " id="top-navbar">
+  <div class="container">
+    
+    <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button">
+      <i data-feather="sidebar"></i>
+    </button>
+    
+    <a class="navbar-brand" href="/">
+      narycyber</a>
+    <button
+      class="navbar-toggler navbar-light"
+      id="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#top-nav-items"
+      aria-label="menu"
+    >
+      <i data-feather="menu"></i>
+    </button>
+
+    <div class="collapse navbar-collapse dynamic-navbar" id="top-nav-items">
+      <ul class="nav navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/#home">Home</a>
+        </li>
+        
+          
+          
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#about">About</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#skills">Skills</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#recent-posts">Recent Posts</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#experiences">Experiences</a>
+                </li>
+              
+            
+          
+        
+        
+          <div id="top-navbar-divider"></div>
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" id="blog-link" href="/posts">Posts</a>
+          </li>
+        
+        
+        
+            
+        
+        
+        
+          <li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle"  href="#" id="themeSelector" role="button"
+  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <img id="navbar-theme-icon-svg" class="theme-icon" src="/icons/moon-svgrepo-com.svg" width=20 alt="Dark Theme">
+</a>
+<div id="themeMenu" class="dropdown-menu dropdown-menu-icons-only" aria-labelledby="themeSelector">
+  <a class="dropdown-item nav-link" href="#" data-scheme="light">
+    <img class="theme-icon" src="/icons/sun-svgrepo-com.svg" width=20 alt="Light Theme">
+  </a>
+  <a class="dropdown-item nav-link" href="#" data-scheme="dark">
+    <img class="theme-icon" src="/icons/moon-svgrepo-com.svg" width=20 alt="Dark Theme">
+  </a>
+  <a class="dropdown-item nav-link" href="#" data-scheme="system">
+    <img class="theme-icon" src="/icons/computer-svgrepo-com.svg" width=20 alt="System Theme">
+  </a>
+</div>
+</li>
+
+        
+      </ul>
+    </div>
+  </div>
+  
+  
+  
+</nav>
+
+
+
+      
+      
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <form class="mx-auto" method="get" action="/search">
+          <input type="text" name="keyword" value="" placeholder="Search" data-search="" id="search-box" />
+        </form>
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts/" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/welcome/" title="Hey, Welcome">Hey, Welcome</a></li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i data-feather="minus-circle"></i><a class="active list-link" href="/posts/api-penetration-testing/"> Api Penetration Testing</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active list-link" href="/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/" title="OWASP API10 via VAPI">OWASP API10 via VAPI</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/privilege-escalation/"> Privilege Escalation</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/privilege-escalation/linux/"> Linux</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/privilege-escalation/linux/sudo-exploitation/" title="Sudo Exploitation">Sudo Exploitation</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/privilege-escalation/windows/"> Windows</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/privilege-escalation/windows/setting-up-a-lab/" title="Setting Up a lab">Setting Up a lab</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/privilege-escalation/windows/service-misconfigurations/" title="Service Misconfiguration">Service Misconfiguration</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/vulnhub/" title="Vulnhub walkthrough">Vulnhub walkthrough</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/toolkit/"> Toolkit</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/toolkit/accesschk.exe/" title="Accesschk.exe">Accesschk.exe</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/hero.png);'>
+      </div>
+
+      
+      <div class="page-content">
+        
+        <div class="author-profile ms-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/author/justus_hu21da735d27193e38d6c7d690c3134560_66867_120x120_fit_box_3.png' alt="Author Image">
+          <h5 class="author-name">Justus Juvenary</h5>
+          <p class="text-muted">Friday, April 28, 2023</p>
+        </div>
+        
+        
+        <div class="title">
+          <h1>OWASP API Security Top 10 via VAPI Walkthrough</h1>
+        </div>
+
+        
+
+        
+        <div class="post-content" id="post-content">
+          <p>According to a Gartner report in 2020 <strong>APIs account for 90% of the attack surface and are the most frequent attack vector.</strong></p>
+<p>APIs often handle sensitive data, such as personal information, financial data, and intellectual property. If an API is not properly secured, this data can be easily accessed and stolen by hackers. In fact, some of the recent big data breaches have been due to under-protected APIs.</p>
+<p>In this blog post, I am going to discuss OWASP top 10 API 2019 vulnerabilities by using VAPI. VAPI (Vulnerable Adversely Programmed Interface) refers to a PHP interface that can be hosted by the user. It is designed to provide exercises based on scenarios from <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwiP2c7Wp83-AhWIy6QKHWKlBWYQFnoECA0QAQ&amp;url=https%3A%2F%2Fowasp.org%2Fwww-project-api-security%2F&amp;usg=AOvVaw1DKFIeXGQUpccFoTKm0QEt" target="_blank" rel="noopener">OWASP API Top 10 2019</a>, aimed at simulating real-world situations.</p>
+<p>We are going to use the following tools in this blog post:</p>
+<ul>
+<li>Postman</li>
+<li>Burp Suite</li>
+<li>Wfuzz</li>
+</ul>
+<p>Install VAPI from GitHub or use the one that is hosted at <a href="http://vapi.apisec.ai/vapi" target="_blank" rel="noopener">http://vapi.apisec.ai/vapi</a>. Import the <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwiRoqmVtM3-AhVCi_0HHezaDn8QFnoECA8QAQ&amp;url=https%3A%2F%2Fwww.postman.com%2Froottusk%2Fworkspace%2Fvapi%2Foverview&amp;usg=AOvVaw0w1XlQelSk7t_QEknHsy9I" target="_blank" rel="noopener">VAPI collection</a> into your postman. Also, this post assumes that you have a basic understanding of how to use Postman, Burp Suite, and the Linux operating system. Set Postman to proxy so that you can intercept requests in Burp Suite.</p>
+<p> </p>
+<h2 id="api1-2019-broken-object-level-authorization">API1: 2019 Broken Object Level Authorization</h2>
+<p>This vulnerability occurs when APIs fail to enforce appropriate access controls for individual objects, resulting in unauthorized access and data leaks. This attack is also referred to as IDOR (Insecure Direct Object References) in regular web applications. In other words, a user can access other users&rsquo; information simply by providing their IDs.</p>
+<h3 id="how-to-exploit">How to exploit</h3>
+<p>Let&rsquo;s explore this vulnerability practically using VAPI</p>
+<h4 id="step-1">Step 1.</h4>
+<p>VAPI collection in Postman, Create an account.
+<img src="account_creation.png" alt="account_creation">
+<em>Fig 1:1: POST request to vapi/api/user</em>
+ </p>
+<h4 id="step-2">Step 2.</h4>
+<p>Retrieve the details of the account that we created by using its ID.(Fig 1:2)</p>
+<p><strong>Provide the Authorization Token. Which is the base64 encode of <code>&quot;Username:Password&quot;</code>.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># if you are using Linux use this command </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># echo -n &#34;Username:Password&#34; | base64</span>
+</span></span><span style="display:flex;"><span>echo -n <span style="color:#e6db74">&#34;Hello7070:hellow70&#34;</span> | base64
+</span></span></code></pre></div><p><img src="get_info.png" alt="get_info">
+<em>Fig 1:2: GET request to vapi/api/user</em></p>
+<h4 id="step-3">Step 3.</h4>
+<p>To check if you have access to view other users&rsquo; details, you can change the ID to different id. For example, let&rsquo;s use <code>ID = 1</code>.(Fig 1:3)
+<img src="bola.png" alt="bola">
+<em>Fig 1:3: GET request to vapi/api/user/1</em></p>
+<p>As you can see from the example above, by providing the ID of 1, we were able to view all the details of that account. Broken Object-Level Authorisation (BOLA) occurs when a user is authenticated, but there is no authorisation mechanism in place to verify whether the user has the necessary permissions to access the requested resources.</p>
+<h3 id="how-to-prevent">How to Prevent</h3>
+<p><strong>To ensure secure access control, implement a proper authorisation mechanism, use it to check access, prefer GUIDs as IDs, and test and validate changes before deployment.</strong></p>
+<p>For more about this vulnerability, check out  <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md" target="_blank" rel="noopener">API1:2019 Broken Object Level Authorization</a></strong></p>
+<p> </p>
+<h2 id="api22019-broken-user-authentication">API2:2019 Broken User Authentication</h2>
+<p>API authentication can be a complex system that includes several processes with a lot of room for failure. A security expert Bruce Schneier said, “The future of digital systems is complexity, and complexity is the worst enemy of security.”</p>
+<p>Broken user authentication refers to any weakness within the API authentication process. The weakness may either be lack of protection mechanism in authentication or implementation of the mechanism.</p>
+<h3 id="how-to-exploit-1">How to exploit</h3>
+<p>Let&rsquo;s explore more about this vulnerability using VAPI.</p>
+<p><img src="post-login.png" alt="post-login">
+Fig 2:1 login request.</p>
+<p>From the above figure (Fig 2:1) we are presented with login credentials which are Email and Password.</p>
+<h4 id="step-1-1">Step 1.</h4>
+<p>Prepare wordlists for our brute force attack.</p>
+<p>The wordlist we are going to use is available at <a href="https://github.com/roottusk/vapi/tree/master/Resources/API2_CredentialStuffing" target="_blank" rel="noopener">credentials</a>. Please save the creds.csv file to your directory. We will be using wfuzz for brute forcing.
+Let&rsquo;s break the list into two parts: the email list and password list. Use <code>cut</code> command, specify the delimiter and field to extract emails and passwords from creds.csv file.</p>
+<p>To extract the emails, use the command <code>cut -d ',' -f 1 creds.csv &gt; emails.txt</code>.</p>
+<p>To extract passwords, use the command <code>cut -d ',' -f 2 creds.csv &gt; password.txt</code>.</p>
+<h4 id="step-2-1">Step 2.</h4>
+<p>It&rsquo;s time to start the brute force attack. There are different ways to achieve this; some may want to use the Intruder of Burp Suite or OWASP ZAP Fuzz, but I will be using wfuzz, a pre-installed fuzzing tool in Kali Linux.</p>
+<p>The command is for wfuzz is</p>
+<pre tabindex="0"><code>wfuzz -d &#39;{&#34;email&#34;:&#34;FUZZ&#34;,&#34;password&#34;:&#34;FUZ2Z&#34;}&#39; -H &#39;Content-Type: application/json&#39; -z file,emails.txt -z file,passwords.txt -u http://127.0.0.1/vapi/api2/user/login -m zip --hc 401
+</code></pre><p>Explanation of the command.</p>
+<ul>
+<li>
+<p><code>wfuzz</code>: This is the name of the tool being used.</p>
+</li>
+<li>
+<p><code>-d '{&quot;email&quot;:&quot;FUZZ&quot;,&quot;password&quot;:&quot;FUZ2Z&quot;}'</code>: This option specifies the data to be sent in the HTTP POST request. The value &ldquo;FUZZ&rdquo; will be replaced by the emails wordlist to be tested,  and The value &ldquo;FUZ2Z&rdquo; will be replaced by the password wordlist to be tested</p>
+</li>
+<li>
+<p><code>-H 'Content-Type: application/json'</code>: This sets the HTTP header &ldquo;Content-Type&rdquo; to &ldquo;application/json&rdquo;, indicating that the data being sent is in JSON format.</p>
+</li>
+<li>
+<p><code>-z file,emails.txt</code>: This option specifies that the tool should use a wordlist (in the file &ldquo;emails.txt&rdquo;) for the &ldquo;email&rdquo; parameter in the data. The &ldquo;FUZZ&rdquo; value in the data will be replaced by each value in the email wordlist.</p>
+</li>
+<li>
+<p><code>-z file,passwords.txt</code>: This option specifies that the tool should use another wordlist (in the file &ldquo;password.txt&rdquo;) for the &ldquo;password&rdquo; parameter in the data. The &ldquo;FUZ2Z&rdquo; value in the data will be replaced by each value in the password wordlist.</p>
+</li>
+<li>
+<p><code>-u http://127.0.0.1/vapi/api2/user/login</code>: This is the target URL for the login page. <strong>change this to your target</strong></p>
+</li>
+<li>
+<p><code>-m zip</code>:  combining payloads</p>
+</li>
+<li>
+<p><code>-hc 401</code>: Hides responses with HTTP status code of 401</p>
+</li>
+</ul>
+<p><img src="wfuzz-bruteforce.png" alt="wfuzz-bruteforce">
+Fig 2:2 wfuzz output.</p>
+<h4 id="step-3-1">Step 3.</h4>
+<p>Use the credentials we got from step 2 to login.
+<img src="bruteforce-success.png" alt="success-bruteforce">
+Fig 2:3 POST vapi/api2/user/login$</p>
+<h4 id="step-4">Step 4.</h4>
+<p>Use the token from step 3, into Authorization-Token for GET request to get details.(Fig 2:4)</p>
+<p><img src="gained-acess.png" alt="gained-access">
+Fig (2:4)  GET request vapi/api2/user/details</p>
+<p>From the above step, we are able to exploit broken user authentication and accessed user&rsquo;s private info.</p>
+<h4 id="how-to-prevent-1">How to Prevent</h4>
+<p>To ensure secure authentication, utilise established standards for authentication, token generation, and password storage, and treat credential recovery/forget password endpoints like login endpoints with anti-brute force mechanisms that are stricter than regular rate limiting.</p>
+<p>Learn more about this vulnerability at <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa2-broken-user-authentication.md" target="_blank" rel="noopener">API2:2019 Broken User Authentication</a></strong></p>
+<p> </p>
+<h2 id="api32019-excessive-data-exposure">API3:2019 Excessive Data Exposure</h2>
+<p>This can occur when an API endpoint responds with more information than is needed to fulfill a request, expecting the consumer to filter the results. This can be the equivalent of asking someone for their name and having them respond with their name, date of birth, email address, phone number, and the identification of every other person they know. This vulnerability can lead to data breaches, loss of trust, and financial loss.</p>
+<h3 id="lets-explain-this-vulnerability-using-vapi">Let&rsquo;s explain this vulnerability using VAPI</h3>
+<h4 id="step-1-2">Step 1.</h4>
+<p>In the Vapi resources, there is an APK. Copy it and install it in the Android emulator. Set your Android emulator&rsquo;s proxy settings to <code>127.0.0.1:8080</code> so that you can use Burp to intercept the requests
+<img src="apk-android-enum.png" alt="apk-in-android"></p>
+<h4 id="step-2-2">Step 2.</h4>
+<p>Open the application and input the base URL. While adding the base URL in the APK, add it like this:</p>
+<ul>
+<li>baseurl/vapi</li>
+<li>If your base url is <code>http://127.0.0.1</code> Add it like <code>http://127.0.0.1/vapi</code></li>
+<li>If you are using the Android emulator, and you are running Vapi locally, the base URL is <code>http://your machine IP address</code>. For example, if the IP address of the machine where both the Android emulator and Vapi run locally is 192.168.1.22,then the baseurl is <code>http://192.168.1.22/vapi</code></li>
+</ul>
+<p>For example, this is my emulator, and I can access the Vapi lab using my IP address.
+<img src="vapi-apk-in-android.png" alt="vapi-apk-running"></p>
+<p>This is the screenshot of baseURL/vapi.</p>
+<p><img src="baseurl-apk.png" alt="baseurl-apk"></p>
+<h4 id="step-3-2">Step 3.</h4>
+<p>Create an account.</p>
+<p><img src="reg-account-apk.png" alt="reg-account-apk"></p>
+<p>Intercept request and response in burp
+<img src="intercept-apk-request.png" alt="intercept-apk-request"></p>
+<ul>
+<li>From the above results, account is created, and our our &ldquo;ID&rdquo; is 3</li>
+</ul>
+<h4 id="step-4-1">Step 4.</h4>
+<p>After signing up, log in to the app.</p>
+<p>Let&rsquo;s see the login using postman
+<img src="api3-login.png" alt="api3-login"></p>
+<p>After logging into the app, this is the screen we are presented with.
+<img src="comment-apk.png" alt="comment-apk"></p>
+<ul>
+<li>In the above screen, create a new comment</li>
+</ul>
+<h4 id="step-5">Step 5.</h4>
+<p>After signing in, we automatically get this request <code>GET /vapi/api3/comment</code>.
+<img src="api3-flag.png" alt="api3-flag">
+From the above response:</p>
+<ul>
+<li>The data we received back is more than what we were supposed to get.</li>
+<li>We asked for a comment, but instead, we got back the device ID, latitude, and longitude of the user who wrote the comment. The above scenario happened because the developer didn&rsquo;t filter sensitive data and relied on the client.</li>
+</ul>
+<h4 id="how-to-prevent-2">How to Prevent.</h4>
+<p>To prevent excessive data exposure through APIs, avoid relying on client-side filtering, review API responses, consider the consumer before exposing new endpoints, cherry-pick specific properties, classify sensitive information, and implement schema-based response validation.</p>
+<p>Learn more about this vulnerability at  <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa3-excessive-data-exposure.md" target="_blank" rel="noopener">API3:2019 Excessive Data Exposure</a></strong></p>
+<p> </p>
+<h2 id="api42019-lack-of-resources--rate-limiting">API4:2019 Lack of Resources &amp; Rate Limiting</h2>
+<p>A lack of resources and rate limiting are two related concepts that are commonly encountered in the context of application programming interfaces (APIs).</p>
+<p>A lack of resources refers to a situation where an API or the underlying infrastructure is unable to handle all of the requests that are being made to it due to insufficient resources, such as processing power, memory, or bandwidth. This can lead to slower response times, dropped requests, or even system crashes. An attack may send an many requests to the api end-point and cause the DoS (Denial of service attack)</p>
+<p>Rate limiting, on the other hand, is a mechanism used by APIs to restrict the number of requests that can be made within a given time period, usually to prevent overloading the system or to prevent abuse like bruteforcing. The API provider will typically define a set of rules that govern how many requests can be made within a given time frame (e.g., 5 requests per minute), and any requests that exceed this limit will be rejected or delayed. If rate limiting is not set especially  to end-points that involves authentications, the attacker may bruteforce login or password reset functionality and gain access.</p>
+<h3 id="lets-see-how-to-exploit-this-vulnerability-using-vapi---api4">Lets see how to exploit this vulnerability using VAPI - API4</h3>
+<h4 id="step-1-3">Step 1.</h4>
+<p>Open API4 in VAPI collection
+<img src="postman_api4.png" alt="postman_api4"></p>
+<ul>
+<li>We have three requests: &ldquo;POST Mobile Login&rdquo;, &ldquo;POST Verify OTP&rdquo;, and &ldquo;GET Get Details.&rdquo;</li>
+</ul>
+<h4 id="step-2-3">Step 2.</h4>
+<p>On the first request (&ldquo;POST Mobile Login&rdquo;), send a request.
+<img src="VAPI_api4_login.png" alt="vapi_api4_login"></p>
+<ul>
+<li>As we can see, the request was successful.</li>
+<li>The response shows that we have to provide a 4-digit OTP sent to the mobile number: <code>&quot;msg&quot;: &quot;4 Digit OTP sent on mobile no.&quot;</code></li>
+</ul>
+<h4 id="step-3-3">Step 3.</h4>
+<p>On the second request (<code>&quot;POST&quot; Verify OTP</code>). Send request on postman through burp suite.
+<img src="api4_burp_verify_otp.png" alt="api4_burp_verify_otp"></p>
+<ul>
+<li>A 403 Forbidden response was returned, meaning the OTP provided is invalid.</li>
+<li>There is no rate limiting on the response.</li>
+</ul>
+<h4 id="step-4-2">Step 4.</h4>
+<p>Since there is no rate limiting, it&rsquo;s time to brute-force the OTP. The OTP is four digits (from the request &ldquo;otp&rdquo;:&ldquo;9999&rdquo;), meaning the OTP will be between 0000 and 9999.</p>
+<ul>
+<li>Let&rsquo;s create a wordlist of numbers containing all numbers from 0000-9999 using python.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>numbers <span style="color:#f92672">=</span> list(range(<span style="color:#ae81ff">0000</span>,<span style="color:#ae81ff">10000</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;numbers.txt&#39;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> numbers:
+</span></span><span style="display:flex;"><span>		f<span style="color:#f92672">.</span>write(str(num) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+</span></span></code></pre></div><ul>
+<li>After having a wordlist, we will use wfuzz to brute-force the OTP. (There are a variety of different other tools for brute-forcing like ffuf and Intruder). The reason we are using wfuzz and not Burp Intruder is that wfuzz is faster than Intruder in Burp community edition.</li>
+</ul>
+<p>The wfuzz command is</p>
+<pre tabindex="0"><code>wfuzz -d &#39;{&#34;otp&#34;:&#34;FUZZ&#34;}&#39; -H &#39;Content-Type:application/json&#39; -z file,numbers.txt -u http://127.0.0.1/vapi/api4/otp/verify --hc 403
+</code></pre><ul>
+<li>In the above command, please change <code>numbers.txt</code> to the name of your wordlist, unless you used the above python script.</li>
+<li>change the URL (http://127.0.0.1) to yours.</li>
+</ul>
+<p><img src="api4_wfuzz.png" alt="api4_wfuzz">
+From the above result</p>
+<ul>
+<li>The <code>OTP</code> is <code>1872</code></li>
+</ul>
+<h4 id="step-5-1">Step 5.</h4>
+<p>In repeater Burp Suite or Postman, on the &ldquo;POST Verify OTP&rdquo; request, provide the OTP we got from the above step and send the request.
+<img src="api4_burp_success_otp.png" alt="api4_burp_success_otp"></p>
+<ul>
+<li>We got 200 OK responce and,</li>
+<li>We got the key.</li>
+</ul>
+<h4 id="step-5-2">Step 5.</h4>
+<p>On the third request (<code>&quot;GET&quot; Get Details</code>), In postman, put the key from above step to  Authorization-Token (<code>{{api4_key}}</code>)
+<img src="api4_postman_get_request.png" alt="api4_postman_get_request"></p>
+<p>After providing the key value of Authorization-Token, send the request.
+<img src="api4_postman_key_token.png" alt="api4_postamn_key_token"></p>
+<p>We can see the postman responce below.
+<img src="api4_postman_responce.png" alt="api4_postamn_responce"></p>
+<ul>
+<li>The 200 Ok responce was returned</li>
+<li>We are able to login as John despite not having john mobile number.</li>
+<li>And we have the flag.</li>
+</ul>
+<p>The responce in Burp suite.
+<img src="api4_burp_responce.png" alt="api4_burp_responce"></p>
+<ul>
+<li>we have successfully exploited this vulnerability.</li>
+</ul>
+<h4 id="how-to-prevent-3">How to Prevent.</h4>
+<p>To prevent lack of resources and rate limiting in APIs, measures such as limiting resource usage, implementing rate limiting, adding server-side validation, and defining maximum data size can be taken</p>
+<p>For more about this vulnerability, check out <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa4-lack-of-resources-and-rate-limiting.md" target="_blank" rel="noopener">API4:2019 Lack of Resources &amp; Rate Limiting</a></strong></p>
+<p> </p>
+<h2 id="api52019-broken-function-level-authorization">API5:2019 Broken Function Level Authorization</h2>
+<p>Exploitation involves an attacker sending valid API calls to endpoints they should not have access to, which can be discovered more easily in APIs due to their structured nature. Authorisation checks for functions or resources are often managed through configuration and can be complex to implement properly. These flaws can give attackers access to unauthorised functions, with administrative functions being a common target.</p>
+<p>Some common flaws that can lead to unauthorised access include:</p>
+<ol>
+<li>
+<p>Predictable resource locations: If resource locations are predictable or easily guessable, it may be possible for an attacker to access resources that they are not authorised to access.</p>
+</li>
+<li>
+<p>Insufficient access controls: If access controls are not properly implemented, it may be possible for an attacker to bypass them and gain access to restricted resources.</p>
+</li>
+</ol>
+<h4 id="how-to-exploit-2">How to exploit.</h4>
+<p>Step 1.</p>
+<ul>
+<li>In the Postman API collection, expand API 5.</li>
+<li>Create an account using <code>POST /vapi/api5/user</code>.</li>
+</ul>
+<p>Here&rsquo;s a screenshot of the Postman showing the account creation and response:
+<img src="api5-reg-account.png" alt="api5-reg-account"></p>
+<h4 id="step-2-4">Step 2.</h4>
+<ul>
+<li>Send a login request using <code>GET /vapi/api5/user/id</code>.</li>
+<li>Put the username and password in the login body.</li>
+<li>Use the ID from the account creation response and put it in the ID placeholder in the request <code>GET /vapi/api5/user/2</code>.</li>
+<li>Put the Authorization-Token in the {api5_key} value. The token is the base64 encode of <code>username:password</code>. Change the username and password details to the details you used to create the account. You can use an online application to base64 encode the login credentials, or you can use the Linux command <code>echo -n &quot;username:password&quot; | base64</code>.
+<img src="base64-example.png" alt="base64-example"></li>
+</ul>
+<p>Copy the token above and put it in the Authorization-Token value field, then send the request.
+<img src="api6-token.png" alt="api6-token">
+As we can see from the above,</p>
+<ul>
+<li>We can see that we have our account details.</li>
+<li>We are authenticated, and to access our data, we have to provide the username and password.</li>
+</ul>
+<p>Let&rsquo;s test the authorization functions.</p>
+<h4 id="step-3-4">Step 3.</h4>
+<p>Since the above request is <code>GET /vapi/api5/user/id</code>, let&rsquo;s try sending API requests to different endpoints. We can test <code>GET /vapi/api5/user/admin</code>, <code>GET /vapi/api5/user/admins</code>, <code>GET /vapi/api5/admin</code>, <code>GET /vapi/api5/users</code>, and so on, depending on the generic naming convention of other previous endpoints.</p>
+<p>We can see that in the endpoint <code>GET /vapi/api5/users</code>, we get the following response in:-</p>
+<p>Postman
+<img src="api5-users.png" alt="api5-users">
+Burp
+<img src="api5-flag.png" alt="api5-flag"></p>
+<ul>
+<li>From the responses above, we can see that we are able to see privileged information, which are admin info. For more information about BAFLA, watch SANS Offensive Operations YouTube video titled <a href="https://youtu.be/5UTHUZ3NGfw" target="_blank" rel="noopener">&ldquo;Analyzing The OWASP API Security Top 10 For Pen Testers&rdquo;</a>).</li>
+</ul>
+<h4 id="how-to-prevent-4">How to Prevent</h4>
+<p>To secure an application, enforce denial of all access by default, review API endpoints for authorisation flaws, and implement authorisation checks based on user group/role. Administrative controllers should inherit from an administrative abstract controller, and administrative functions in regular controllers should also implement authorisation checks based on user group/role.</p>
+<p>Learn more about this vulnerability at <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa5-broken-function-level-authorization.md" target="_blank" rel="noopener">API5:2019 Broken Function Level Authorization</a></strong></p>
+<p> </p>
+<h2 id="api62019-mass-assignment">API6:2019 Mass Assignment</h2>
+<p>Mass Assignment occurs when an API consumer includes more parameters in
+their requests than the application intended and the application adds these
+parameters to code variables or internal objects. Understanding the business logic, objects&rsquo; relations, and the API structure is typically necessary for exploitation. APIs make it easier to exploit mass assignment because they expose the application&rsquo;s underlying implementation and the names of its properties.</p>
+<p>To streamline development, modern frameworks often provide functions that automatically connect input from clients to code variables and internal objects. Unfortunately, attackers can take advantage of this approach to alter or replace properties of sensitive objects that developers never meant to reveal.</p>
+<h3 id="lets-explore-this-vulnerability-using-vapi">Let&rsquo;s explore this vulnerability using VAPI.</h3>
+<h4 id="step-1-4">Step 1.</h4>
+<ul>
+<li>On Postman VAPI collection, expand API6.</li>
+<li>There are two requests, <code>POST Create User</code> and <code>GET user</code></li>
+<li>On the first request, <code>POST Create User</code>, create a user by filling the information required.</li>
+</ul>
+<p>Postman request and response.
+<img src="api6-reg-account.png" alt="api6-reg-account"></p>
+<p>Burp&rsquo;s request and response
+<img src="api6-reg-inburp.png" alt="api6-reg-burp"></p>
+<h4 id="step-2-5">Step 2.</h4>
+<ul>
+<li>On Second request, <code>GET Get User</code>,</li>
+<li>Provide the Authorization-Token. Again, this token is the value of base64 encode of <code>username:password</code>. You can use linux command <code>echo -n &quot;username:password&quot; |base64</code></li>
+<li>Change the username and password above to the one you used to create an account in the first step.</li>
+<li>Put the token into the Authorization-Token value field and send the request.</li>
+</ul>
+<p>Postman request and response.
+<img src="api6-user-me.png" alt="api6-user-me"></p>
+<p>Burp suite request and response.
+<img src="burp-api6-user-me.png" alt="burp-api6-user-me"></p>
+<ul>
+<li>From the above responses, both Postman&rsquo;s and Burp Suite&rsquo;s, we can see that there is an additional field which is <code>&quot;credit&quot;:&quot;0&quot;</code>.</li>
+</ul>
+<h4 id="step-3-5">Step 3.</h4>
+<p>Let&rsquo;s try to create a new account but this time, set the <code>&quot;credit&quot;</code> to any number.</p>
+<p>Let&rsquo;s set the credit to 20.</p>
+<p>The request and response on postman
+<img src="api6-postman-credit-20.png" alt="api6-postman-credit-20"></p>
+<p>The request and response in Burp suite
+<img src="burp-credit20.png" alt="burp-credit20">
+From the above,</p>
+<ul>
+<li>We got the 200 response, meaning the request was successful</li>
+<li>The id is 4</li>
+</ul>
+<h4 id="step-4-3">Step 4.</h4>
+<p>Let&rsquo;s request the details of our new account. Remember to base64 encode the &ldquo;username:password&rdquo; and use it as the Authorization-Token.
+<img src="api6-login-credit20.png" alt="api6-login-credit20">
+As we can see, the credit is set to the number that we set while creating an account in the above step.</p>
+<h4 id="step-5-3">Step 5.</h4>
+<p>Let&rsquo;s create a new account, and this time set the credit to 200.</p>
+<p>In Postman
+<img src="api6-reg-credit200.png" alt="api6-reg-credit200"></p>
+<p>In Burp Suite
+<img src="api6-reg-burp-credit200.png" alt="api6-burpreg-credit200"></p>
+<ul>
+<li>After creating the account, encode &ldquo;username:password&rdquo; (the new username and password) using base64 and set it as the Authorization-Token.</li>
+</ul>
+<p>Request and response in postman
+<img src="api6-flag-postamn.png" alt="api6-flag-postman"></p>
+<p>Request and response in Burp suite
+<img src="api6-flag-burp.png" alt="api6-flag-burp"></p>
+<ul>
+<li>From the above output, we have successfully exploited this vulnerability.</li>
+<li>We have set our credit to 200.</li>
+</ul>
+<h4 id="how-to-prevent-this-vulnerability-according-to-owasp">How to Prevent this vulnerability according to OWASP.</h4>
+<ul>
+<li>If possible, avoid using functions that automatically bind a client’s input into code variables or internal objects.</li>
+<li>Whitelist only the properties that should be updated by the client.</li>
+<li>Use built-in features to blacklist properties that should not be accessed by clients.</li>
+<li>If applicable, explicitly define and enforce schemas for the input data payloads</li>
+</ul>
+<p>For more information about this vulnerability, check out <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa6-mass-assignment.md" target="_blank" rel="noopener">API6:2019 Mass Assignment</a></strong></p>
+<p> </p>
+<h2 id="api72019-security-misconfiguration">API7:2019 Security Misconfiguration</h2>
+<p>API security misconfigurations can occur at any level, leaving the system vulnerable to unauthorised access or exposure of sensitive data. Attackers will often search for unpatched flaws, unprotected files and directories, or common endpoints to exploit these misconfigurations. These vulnerabilities can be present at the network or application level and can be detected and exploited using automated tools. If left unaddressed, security misconfigurations can lead to serious consequences such as unauthorised access to sensitive user data or full server compromise.</p>
+<p>According to OWASP, the API might be vulnerable to security misconfiguration if:</p>
+<ul>
+<li>Appropriate security hardening is missing across any part of the application stack, or if it has improperly configured permissions on cloud services.</li>
+<li>The latest security patches are missing, or the systems are out of date.</li>
+<li>Unnecessary features are enabled (e.g., HTTP verbs).</li>
+<li>Transport Layer Security (TLS) is missing.</li>
+<li>A Cross-Origin Resource Sharing (CORS) policy is missing or improperly set.</li>
+<li>Error messages include stack traces, or other sensitive information is exposed.</li>
+</ul>
+<h3 id="exploring-this-vulnerability-using-vapi">Exploring this vulnerability using VAPI.</h3>
+<h4 id="step-1-5">Step 1.</h4>
+<p>This lab has improperly CORS set. Cross-Origin Resource Sharing (CORS) is a security mechanism implemented in web browsers that allows a server to specify which origins are permitted to access its resources. This is done to prevent malicious scripts on unauthorised domains from accessing sensitive data or performing unauthorised actions on behalf of a user. CORS is enforced by the browser and is based on HTTP headers exchanged between the client and server. In summary, CORS ensures that web applications are accessed only from trusted sources and reduces the risk of unauthorised access and data leakage.</p>
+<p>Let&rsquo;s see this in VAPI collection API7.
+We see there are four requests which are <code>POST: Create User</code>, <code>GET Login</code>, <code>GET Key</code>, <code>User Logout</code></p>
+<ul>
+<li>On the first request, create a new account.
+<img src="api7-account-reg.png" alt="api7-account-reg"></li>
+</ul>
+<h4 id="step-2-6">Step 2.</h4>
+<p>On the second request (<code>GET Login</code>), login using the created credentials above. Again, the Authorization-Token value is encoded as &ldquo;username:password&rdquo; using base64.
+<img src="login-api7.png" alt="login-api7"></p>
+<ul>
+<li>We are now logged in.</li>
+</ul>
+<h4 id="step-3-6">Step 3.</h4>
+<p>On the third request (<code>GET Key</code>), since we are logged in, send the request.</p>
+<p>Request and response in Burp suite
+<img src="api7-get-key.png" alt="api7-get-key"></p>
+<p>Request and response in Postman
+<img src="api7-postman.png" alt="api7-postman">
+From the above response,</p>
+<ul>
+<li>There are two most important pieces of information: <code>Access-Control Allow-Origin *</code> and <code>Access-Control Allow-Credentials: true</code>.
+<img src="cors-null.png" alt="cors-null"></li>
+</ul>
+<h4 id="step-4-4">Step 4.</h4>
+<p>On the request, let&rsquo;s add <code>Origin:</code> and put a domain that we control. For this lab use any domain. Let&rsquo;s use <code>hellow.com</code>
+<code>Origin: hellow.com</code> and send the request.
+<img src="api7-flag.png" alt="api7-flag"></p>
+<ul>
+<li>From above response, our site <code>hellow.com</code> is accepted <code>Acess-Control Allow-Origin: hellow.com</code></li>
+<li>We have the flag as well.</li>
+<li>We have successfully exploited the security misconfiguration of this site.</li>
+</ul>
+<h3 id="how-to-prevent-5">How to Prevent</h3>
+<p>According to OWASP, use the following techniques to prevent this vulnerability from happening.</p>
+<ul>
+<li>A repeatable hardening process leading to fast and easy deployment of a properly locked down environment.</li>
+<li>A task to review and update configurations across the entire API stack. The review should include: orchestration files, API components, and cloud services (e.g., S3 bucket permissions).</li>
+<li>A secure communication channel for all API interactions access to static assets (e.g., images).</li>
+<li>An automated process to continuously assess the effectiveness of the configuration and settings in all environments.</li>
+</ul>
+<p>More about security misconfigurations, check out <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa7-security-misconfiguration.md" target="_blank" rel="noopener">API7:2019 Security Misconfiguration</a></strong></p>
+<p> </p>
+<h2 id="api82019-injection">API8:2019 Injection</h2>
+<p>API injection attacks occur when attackers exploit vulnerabilities in an API by feeding it with malicious data through various injection vectors such as direct input, parameters, or integrated services. The malicious data is then sent to an interpreter, which processes the input and executes the corresponding operation. However, if the API is not properly secured, the interpreter may misinterpret the input and execute unintended commands. Injection flaws are prevalent in various technologies, including SQL, LDAP, or NoSQL queries, OS commands, XML parsers, and ORM. Such flaws can lead to severe consequences such as information disclosure, data loss, denial of service (DoS), or even complete host takeover.</p>
+<h3 id="exploring-the-practical-implications-of-this-vulnerability">Exploring the Practical Implications of this Vulnerability</h3>
+<h4 id="step-1-6">Step 1.</h4>
+<p>On VAPI collection in Postman, try logging in using any credentials and check the error message. For example, let&rsquo;s use &lsquo;admin&rsquo; and &lsquo;password&rsquo; as the username and password.</p>
+<p>In Postman
+<img src="vapi-api8-login.png" alt="vapi-api8-login"></p>
+<p>in burp
+<img src="vapi-api8-login-burp.png" alt="vapi-api8-burp-login"></p>
+<ul>
+<li>From the above response, the credentials are incorrect.</li>
+</ul>
+<h4 id="step-2-7">Step 2.</h4>
+<p>Since it accepts input for login, let&rsquo;s try to check if the sign-in is vulnerable to SQL injection.</p>
+<p>Put the single quote <code>(apostrophe ')</code> in the login field. This is because the SQL command uses a single quote to enclose the string literals or character data.</p>
+<p>Example.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> users <span style="color:#66d9ef">WHERE</span> username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;username&#39;</span> <span style="color:#66d9ef">AND</span> password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;password&#39;</span>;
+</span></span></code></pre></div><p>When we put a single quote in either the username field or password field, if the page is not vulnerable, it should handle it like any other character. But if the page is vulnerable, it will try to enclose the syntax and then throw an error.</p>
+<p>Let&rsquo;s try this on both the username and password fields in Postman and Burp Suite.</p>
+<p>Trying apostrophe (<code>'</code>)on the username field.</p>
+<p>Result in burp
+<img src="sql-burp-username.png" alt="sql-burp-username"></p>
+<p>Results in postman.
+<img src="postman-sql-username.png" alt="postman-sql-username"></p>
+<p>From the above results, we can conclude that the username field is vulnerable to SQL injection since it threw an error.</p>
+<h4 id="step-3-7">Step 3.</h4>
+<p>Let&rsquo;s try to use the above methodology to see if the password field is vulnerable to SQL injection by inserting an apostrophe.</p>
+<p>Result in burp
+<img src="burp-sql-pasword.png" alt="burp-sql-password"></p>
+<p>Results in postman.
+<img src="postmab-sql-password.png" alt="postamn-sql-password"></p>
+<ul>
+<li>From the above results, we can conclude that the password field is also vulnerable to SQL injection.</li>
+</ul>
+<h4 id="step-4-5">Step 4.</h4>
+<p>Time to exploit the vulnerability.</p>
+<p>Since this is a SQL vulnerability, from the example command above:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> users <span style="color:#66d9ef">WHERE</span> username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;username&#39;</span> <span style="color:#66d9ef">AND</span> password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;password&#39;</span>;
+</span></span></code></pre></div><p>Let&rsquo;s try to make the condition true using <code>' OR 1=1 #</code></p>
+<ul>
+<li>The single quote <code>'</code> encloses the string literals.</li>
+<li>Then <code>OR</code> is a logical operator that is used to combine multiple conditions in the WHERE clause. This means that the syntax will be true if one of the conditions is true.</li>
+<li><code>1=1</code> is the second condition, which is true. And because it is true, the command syntax will be true.</li>
+<li><code>#</code> the hash symbol is used for commenting out the rest of the syntax of the command in MySQL databases. Try different commenting symbols like <code>--</code> to understand more about SQL.</li>
+</ul>
+<p><strong>If you are new to SQL injection, I would advise you to take a few minutes to get to know about SQL injection. Some great resources are <a href="https://portswigger.net/" target="_blank" rel="noopener">Portswigger Academy</a>, <a href="https://www.youtube.com/watch?v=1nJgupaUPEQ&amp;list=PLuyTk2_mYISLaZC4fVqDuW_hOk0dd5rlf" target="_blank" rel="noopener">Raha Khalil&rsquo;s YouTube channel</a>, and <a href="https://youtu.be/AEaW8_T0xmY" target="_blank" rel="noopener">Tib3rius&rsquo;s YouTube channel</a>.</strong></p>
+<p>Let&rsquo;s see the result in Burp by providing <code>' OR 1=1 #</code> to the username field.
+<img src="sql-user-field.png" alt="sql-user-field"></p>
+<ul>
+<li>We have successfully obtained the authkey.</li>
+</ul>
+<p>Let&rsquo;s provide the same payload into the password field.
+<img src="sql-password-filed-postman.png" alt="sql-password-field-postman"></p>
+<ul>
+<li>Again, we have successfully obtained the authkey.</li>
+</ul>
+<h4 id="step-5-4">Step 5.</h4>
+<p>In the <code>GET Secret</code> request of Postman&rsquo;s VAPI collection, provide the authkey obtained from the previous step in the <code>Authorization-Token</code> field and send the request.</p>
+<p>Results in postman
+<img src="flag-postman.png" alt="flag-postman"></p>
+<p>Results in Burp suite.
+<img src="flag-burp.png" alt="flag-burp"></p>
+<ul>
+<li>As you can see, we have successfully solve the lab and logged in as admin.</li>
+<li>We have successfully exploited injection vulnerability.</li>
+</ul>
+<h4 id="best-practices-for-preventing-api-injection-attacks">Best Practices for Preventing API Injection Attacks.</h4>
+<p>To prevent API injection attacks, it is important to perform data validation using a trustworthy library, validate and sanitize all client-provided data, escape special characters, use a parameterized interface, limit returned records, filter incoming data, and define data types and strict patterns for string parameters.</p>
+<p>For more about this vulnerability, check <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa8-injection.md" target="_blank" rel="noopener">API8:2019 Injection</a></strong></p>
+<p> </p>
+<h2 id="api92019-improper-assets-management">API9:2019 Improper Assets Management</h2>
+<p>This vulnerability happens when Old API versions are unpatched and all other vulnerabilities that are patched in new versions still exists in old ones and both versions are connected to the same databases. Example two versions connected on same database, in version 2 there is rate limiting in place but version one there isn&rsquo;t. An attack can bruteforce version 1 and get into the system since there is no rate limiting to prevent bruteforce from happening.</p>
+<p>Attackers may gain access to sensitive data, or even takeover the server through old, unpatched API versions connected to the same database.</p>
+<h3 id="lets-see-the-exploitation-of-this-vulnerability-practically-using-vapi">Let&rsquo;s see the exploitation of this vulnerability practically using VAPI.</h3>
+<h4 id="step-1-7">Step 1.</h4>
+<p>From the VAPI collection in Postman, there is a login request where we have the username called &ldquo;richardbranson&rdquo; and a PIN that was sent to the user&rsquo;s phone number.
+<img src="vapi-api9-v2.png" alt="vapi-api9-v2"></p>
+<p>Let&rsquo;s try putting any four digits to see the response. Let&rsquo;s try 1234.
+<img src="api9-v2-login.png" alt="api9-v2-login"></p>
+<ul>
+<li>From the above result, there are two interesting pieces of information which are &ldquo;X-RateLimit-Limit: 5&rdquo; and &ldquo;X-RateLimit-Remaining: 4&rdquo;.</li>
+<li>This means that there is rate limiting in place and if we try to brute force and exceed five times, we won&rsquo;t be able to reach the server.</li>
+</ul>
+<p>We can see the above explanation in the following results in Burp.
+<img src="rate-limiting-vapi-api9-v2.png" alt="rate-limiting_in_place"></p>
+<ul>
+<li>The above result shows that we have <code>X-RateLimit-Remaining: 1</code></li>
+</ul>
+<p>After exceeding the rate limit, we get a 500 status code.
+<img src="int-server-error-rate-limit.png" alt="internal-server-rate-limiting"></p>
+<h4 id="step-2-8">Step 2.</h4>
+<p>The above request on <code>POST /vapi/api9/v2/user/login</code> is protected against brute forcing. But because the request has <code>v2</code> in it, we can assume that it represents version 2. Let&rsquo;s see version 1 at <code>POST /vapi/api9/v1/user/login</code>
+<img src="api9-v1-login.png" alt="api9-v1-login"></p>
+<ul>
+<li>From the output above, not only does this request return a 200 status code, but in the response it has no rate limiting in place. This is because the developer abandoned the <code>v1</code> API once the <code>v2</code> was in place.</li>
+</ul>
+<h4 id="step-3-8">Step 3.</h4>
+<p>Since there is no rate limiting in place, lets try to get the PIN that was sent to the user&rsquo;s phone number.</p>
+<ul>
+<li>Again, we are using wfuzz because it&rsquo;s free and faster compared to Burp Intruder in the community edition. Also, it comes pre-installed in Kali Linux.</li>
+<li>We are using the same wordlist we created in &ldquo;API4:2019 Lack of Resources &amp; Rate Limiting&rdquo; section.
+The command for wfuzz is</li>
+</ul>
+<pre tabindex="0"><code>wfuzz -d &#39;{&#34;username&#34;:&#34;richardbranson&#34;, &#34;pin&#34;:&#34;FUZZ&#34;}&#39; -H &#39;Content-Type:application/json&#39; -z file,numbers.txt -u http://127.0.0.1/vapi/api9/v1/user/login --hh 0 -t 100
+</code></pre><p>The &ldquo;&ndash;hh 0&rdquo; means hide responses with zero (0) characters.
+&ldquo;-t 100&rdquo; uses 100 threads.</p>
+<p><img src="api9-v1-wfuzz.png" alt="api-v1-wfuzz"></p>
+<ul>
+<li>From the above command output, the PIN is &ldquo;1655&rdquo;.</li>
+</ul>
+<h4 id="step-4-6">Step 4.</h4>
+<p>Back to either Postman or Burp Suite, let&rsquo;s log in using the above PIN..</p>
+<p>Using Postman
+<img src="succ-postman-login.png" alt="postman-login"></p>
+<p>Using burp suite
+<img src="burp-login.png" alt="burp-login"></p>
+<ul>
+<li>From the above results, we have successfully logged in</li>
+<li>We have successfully exploited the improper assignment vulnerability.</li>
+</ul>
+<h3 id="how-to-prevent-6">How to Prevent</h3>
+<p>To ensure API security, inventory and document all hosts and integrated services, document all aspects of your API, generate documentation automatically, use external measures like API security firewalls, avoid using production data with non-production deployments, and perform a risk analysis when updating versions.</p>
+<p>Learn more about this vulnerability at <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa9-improper-assets-management.md" target="_blank" rel="noopener">API9:2019 Improper Assets Management</a></strong></p>
+<p> </p>
+<h2 id="api102019-insufficient-logging--monitoring">API10:2019 Insufficient Logging &amp; Monitoring</h2>
+<p>The lack of logging and monitoring makes it easy for attackers to abuse systems without being detected, as suspicious activities cannot be tracked and responded to in a timely manner. This gives attackers ample time to fully compromise the systems without being detected.</p>
+<p>vapi collection in Postman, send the request.</p>
+<p>The below output is the flag for vapi/api10. This is just showing that all the testing was not monitored or logged. That is the vulnerability in itself.</p>
+<p>Output in Postman
+<img src="api10-log.png" alt="api10-log"></p>
+<p>Output In Burp Suite.
+<img src="api10-flag.png" alt="api10-flag"></p>
+<h3 id="how-to-prevent-this-vulnerability">How to prevent this vulnerability.</h3>
+<p>To enhance API security, it&rsquo;s important to log failed authentication attempts and input errors, maintain log integrity, and monitor the system with a SIEM tool. Custom alerts and dashboards can help detect suspicious activity.</p>
+<p>For more about this vulnerability check out <strong><a href="https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xaa-insufficient-logging-monitoring.md" target="_blank" rel="noopener">API10:2019 Insufficient Logging &amp; Monitoring</a></strong></p>
+<p> </p>
+<h2 id="in-conclusion">In conclusion.</h2>
+<p>The OWASP API Security Top 10 2019 highlights the most critical API security risks that developers and organizations should be aware of. However, with the 2023 update currently in preparation, it&rsquo;s important to stay up-to-date on the latest API security best practices.</p>
+<p>Fortunately, there are several resources available to help you deepen your knowledge of API security, including the <a href="%28https://www.apisecuniversity.com/%29">APISec University</a> and the book &ldquo;<a href="%28https://www.amazon.com/Hacking-APIs-Application-Programming-Interfaces/dp/1718502443%29">Hacking APIs</a>&rdquo; by Corey J Ball. Additionally, the OWASP website provides valuable information on the current state of API security, including the previous Top 10 list.</p>
+<p>Finally, keeping up with industry experts like Alissa Knight can provide valuable insights and perspectives on API security. By utilising these resources and staying informed, you can better protect your APIs against emerging threats and ensure the security of your organisation&rsquo;s data.</p>
+
+        </div>
+
+        
+        <div class="row ps-3 pe-3">
+        
+          <div class="col-md-6 share-buttons">
+          
+          </div>
+
+        
+        
+          
+            
+          
+          <div class="col-md-6 btn-improve-page">
+             
+               <a href="https://github.com/hugo-toha/hugo-toha.github.io/edit/main/content/posts/API%20Penetration%20Testing/OWASP-API-Top10-VAPI-Walkthrough/index.md" title="Improve this page" target="_blank" rel="noopener">
+            
+                <i class="fas fa-code-branch"></i>
+                Improve this page
+              </a>
+          </div>
+        
+        </div>
+
+
+
+      
+      <hr />
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+
+  
+    
+    
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+<div class="row next-prev-navigator">
+  
+    <div class="col-md-6 previous-article">
+      <a href="/posts/welcome/" title="Penetration Testing Blog!" class="btn filled-button">
+        <div><i class="fas fa-chevron-circle-left"></i> Prev</div>
+        <div class="next-prev-text">Penetration Testing Blog!</div>
+      </a>
+    </div>
+  
+  
+      
+      
+        
+      
+      <div class="col-md-6 next-article">
+        <a href="/posts/privilege-escalation/linux/sudo-exploitation/" title="Escalating Privileges with Sudo" class="btn filled-button">
+          <div>Next <i class="fas fa-chevron-circle-right"></i></div>
+          <div class="next-prev-text">Escalating Privileges with Sudo</div>
+        </a>
+      </div>
+    
+</div>
+
+      <hr />
+
+      
+      
+
+      
+      
+
+      </div>
+    </div>
+  </div>
+  
+  <a id="scroll-to-top" class="btn" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Scroll to top">
+    <i class="fas fa-chevron-circle-up"></i>
+  </a>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+    <div class="toc-holder">
+      <h5 class="text-center ps-3">Table of Contents</h5>
+      <hr>
+      <div class="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#api1-2019-broken-object-level-authorization">API1: 2019 Broken Object Level Authorization</a>
+      <ul>
+        <li><a href="#how-to-exploit">How to exploit</a>
+          <ul>
+            <li><a href="#step-1">Step 1.</a></li>
+            <li><a href="#step-2">Step 2.</a></li>
+            <li><a href="#step-3">Step 3.</a></li>
+          </ul>
+        </li>
+        <li><a href="#how-to-prevent">How to Prevent</a></li>
+      </ul>
+    </li>
+    <li><a href="#api22019-broken-user-authentication">API2:2019 Broken User Authentication</a>
+      <ul>
+        <li><a href="#how-to-exploit-1">How to exploit</a>
+          <ul>
+            <li><a href="#step-1-1">Step 1.</a></li>
+            <li><a href="#step-2-1">Step 2.</a></li>
+            <li><a href="#step-3-1">Step 3.</a></li>
+            <li><a href="#step-4">Step 4.</a></li>
+            <li><a href="#how-to-prevent-1">How to Prevent</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#api32019-excessive-data-exposure">API3:2019 Excessive Data Exposure</a>
+      <ul>
+        <li><a href="#lets-explain-this-vulnerability-using-vapi">Let&rsquo;s explain this vulnerability using VAPI</a>
+          <ul>
+            <li><a href="#step-1-2">Step 1.</a></li>
+            <li><a href="#step-2-2">Step 2.</a></li>
+            <li><a href="#step-3-2">Step 3.</a></li>
+            <li><a href="#step-4-1">Step 4.</a></li>
+            <li><a href="#step-5">Step 5.</a></li>
+            <li><a href="#how-to-prevent-2">How to Prevent.</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#api42019-lack-of-resources--rate-limiting">API4:2019 Lack of Resources &amp; Rate Limiting</a>
+      <ul>
+        <li><a href="#lets-see-how-to-exploit-this-vulnerability-using-vapi---api4">Lets see how to exploit this vulnerability using VAPI - API4</a>
+          <ul>
+            <li><a href="#step-1-3">Step 1.</a></li>
+            <li><a href="#step-2-3">Step 2.</a></li>
+            <li><a href="#step-3-3">Step 3.</a></li>
+            <li><a href="#step-4-2">Step 4.</a></li>
+            <li><a href="#step-5-1">Step 5.</a></li>
+            <li><a href="#step-5-2">Step 5.</a></li>
+            <li><a href="#how-to-prevent-3">How to Prevent.</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#api52019-broken-function-level-authorization">API5:2019 Broken Function Level Authorization</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#how-to-exploit-2">How to exploit.</a></li>
+            <li><a href="#step-2-4">Step 2.</a></li>
+            <li><a href="#step-3-4">Step 3.</a></li>
+            <li><a href="#how-to-prevent-4">How to Prevent</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#api62019-mass-assignment">API6:2019 Mass Assignment</a>
+      <ul>
+        <li><a href="#lets-explore-this-vulnerability-using-vapi">Let&rsquo;s explore this vulnerability using VAPI.</a>
+          <ul>
+            <li><a href="#step-1-4">Step 1.</a></li>
+            <li><a href="#step-2-5">Step 2.</a></li>
+            <li><a href="#step-3-5">Step 3.</a></li>
+            <li><a href="#step-4-3">Step 4.</a></li>
+            <li><a href="#step-5-3">Step 5.</a></li>
+            <li><a href="#how-to-prevent-this-vulnerability-according-to-owasp">How to Prevent this vulnerability according to OWASP.</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#api72019-security-misconfiguration">API7:2019 Security Misconfiguration</a>
+      <ul>
+        <li><a href="#exploring-this-vulnerability-using-vapi">Exploring this vulnerability using VAPI.</a>
+          <ul>
+            <li><a href="#step-1-5">Step 1.</a></li>
+            <li><a href="#step-2-6">Step 2.</a></li>
+            <li><a href="#step-3-6">Step 3.</a></li>
+            <li><a href="#step-4-4">Step 4.</a></li>
+          </ul>
+        </li>
+        <li><a href="#how-to-prevent-5">How to Prevent</a></li>
+      </ul>
+    </li>
+    <li><a href="#api82019-injection">API8:2019 Injection</a>
+      <ul>
+        <li><a href="#exploring-the-practical-implications-of-this-vulnerability">Exploring the Practical Implications of this Vulnerability</a>
+          <ul>
+            <li><a href="#step-1-6">Step 1.</a></li>
+            <li><a href="#step-2-7">Step 2.</a></li>
+            <li><a href="#step-3-7">Step 3.</a></li>
+            <li><a href="#step-4-5">Step 4.</a></li>
+            <li><a href="#step-5-4">Step 5.</a></li>
+            <li><a href="#best-practices-for-preventing-api-injection-attacks">Best Practices for Preventing API Injection Attacks.</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#api92019-improper-assets-management">API9:2019 Improper Assets Management</a>
+      <ul>
+        <li><a href="#lets-see-the-exploitation-of-this-vulnerability-practically-using-vapi">Let&rsquo;s see the exploitation of this vulnerability practically using VAPI.</a>
+          <ul>
+            <li><a href="#step-1-7">Step 1.</a></li>
+            <li><a href="#step-2-8">Step 2.</a></li>
+            <li><a href="#step-3-8">Step 3.</a></li>
+            <li><a href="#step-4-6">Step 4.</a></li>
+          </ul>
+        </li>
+        <li><a href="#how-to-prevent-6">How to Prevent</a></li>
+      </ul>
+    </li>
+    <li><a href="#api102019-insufficient-logging--monitoring">API10:2019 Insufficient Logging &amp; Monitoring</a>
+      <ul>
+        <li><a href="#how-to-prevent-this-vulnerability">How to prevent this vulnerability.</a></li>
+      </ul>
+    </li>
+    <li><a href="#in-conclusion">In conclusion.</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+    
+  </section>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+
+  
+  
+  
+    
+  
+
+  
+  
+  
+
+  
+  
+  
+    
+  
+  
+
+  
+  
+  
+
+  <footer id="footer" class="container-fluid text-center align-content-center footer pb-2">
+    <div class="container pt-5">
+      <div class="row text-start">
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>Navigation</h5>
+          
+          <ul>
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#about">About</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#skills">Skills</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#recent-posts">Recent Posts</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#experiences">Experiences</a>
+                </li>
+              
+            
+              
+                
+              
+            
+          </ul>
+          
+        </div>
+        
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>Contact me:</h5>
+          <ul>
+            
+              
+                <li><a href=mailto:jusnary1@gmail.com target="_blank" rel="noopener">
+                  <span><i class="fas fa-envelope"></i></span> <span>jusnary1@gmail.com</span>
+                </a></li>
+              
+            
+              
+                <li>
+                  
+                  <a href=https://www.linkedin.com/in/justus-juvenary target="_blank" rel="noopener">
+                    <span><i class=fab&#32;fa-linkedin></i></span> <span>Justus Juvenary</span>
+                  </a>
+                  
+                </li>
+              
+            
+          </ul>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+    
+    
+    <hr />
+    <div class="container">
+      <div class="row text-start">
+        <div class="col-md-4">
+          <a id="theme" href="https://www.linkedin.com/in/justus-juvenary/" target="_blank" rel="noopener">
+            Justus Juvenary
+          </a>
+        </div>
+        <div class="col-md-4 text-center">© 2024 Copyright.</div>
+        <div class="col-md-4 text-end">
+          <a id="hugo" href="https://www.narycyber.com/" target="_blank" rel="noopener">
+            NaryCyber
+          </a>
+        </div>
+      </div>
+    </div>
+    
+  </footer>
+
+
+    <script src="/application.b91ad4f8dcfc23b15c9ba98e2b039a62fd05938843f9092a89760a31bc5b2cd4.js" integrity="sha256-uRrU&#43;Nz8I7Fcm6mOKwOaYv0Fk4hD&#43;QkqiXYKMbxbLNQ=" defer></script>
+
+
+    
+     
+
+    
+</body>
+</html>

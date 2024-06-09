@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Toolkit on narycyber</title>
+    <link>http://localhost:1313/posts/toolkit/</link>
+    <description>Recent content in Toolkit on narycyber</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Feb 2023 16:55:35 +0300</lastBuildDate><atom:link href="http://localhost:1313/posts/toolkit/index.xml" rel="self" type="application/rss+xml" /><item>
+      <title>Accesschk.exe</title>
+      <link>http://localhost:1313/posts/toolkit/accesschk.exe/</link>
+      <pubDate>Wed, 15 Feb 2023 16:55:35 +0300</pubDate>
+      
+      <guid>http://localhost:1313/posts/toolkit/accesschk.exe/</guid>
+      <description>Access Control and Privilege Escalation: Understanding Accesschk.exe
+Accesschk.exe, part of the Sysinternals Suite, is a command-line utility that checks the access rights of files, registry keys, and other resources in Windows.
+Here are some examples of commands to check access rights:
+Report effective permissions on a file: accesschk.exe -e c:\example.txt Check explicit permissions on a registry key: accesschk.exe -k HKEY_LOCAL_MACHINE\SOFTWARE\example Check inherited permissions on a service: accesschk.exe -i -s example Check effective permissions on a file for a specific user: accesschk.</description>
+    </item>
+    
+    
+  </channel>
+</rss>

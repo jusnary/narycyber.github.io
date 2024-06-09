@@ -14,7 +14,7 @@ designation: Cybersecurity Researcher
 #  url: "https://www.example.com"
 
 # your resume. this file path should be relative to you "static" directory
-resume: "files/resume.pdf"
+#resume: "files/resume.pdf"
 
 # a summary about you
 summary: "I'm Justus Juvenary, a dedicated and results-driven cybersecurity professional with a Bachelor's degree in information security and over three years of industry experience. Skilled in web application security, API penetration testing, DevSecOps, risk assessments, and compliance frameworks like GDPR, PCI DSS, and HIPAA. Beyond my professional work, I share my knowledge and insights through this blog focused on offensive security, contributing to the industry's collective knowledge. I enjoy learning from other professionals, believing in the power of collaboration and continuous improvement.
@@ -24,46 +24,45 @@ summary: "I'm Justus Juvenary, a dedicated and results-driven cybersecurity prof
 # your social links
 # give as many as you want. use font-awesome for the icons.
 socialLinks:
-  - name: Email
-    icon: "fas fa-envelope"
-    url: "jusnary1@gmail.com"
+- name: Email
+  icon: "fas fa-envelope"
+  url: "jusnary1@gmail.com"
 
-  - name: Github
-    icon: "fab fa-github"
-    url: "https://github.com/jusnary"
+- name: Github
+  icon: "fab fa-github"
+  url: "https://github.com/jusnary"
 
-  - name: linkedin
-    icon: "fa-brands fa-linkedin"
-    url: "https://www.linkedin.com/in/justus-juvenary"
+- name: linkedin
+  icon: "fa-brands fa-linkedin"
+  url: "https://www.linkedin.com/in/justus-juvenary"
 
-  - name: Twitter
-    icon: "fa-brands fa-twitter"
-    url: "https://twitter.com/jusnaryy"
+- name: Twitter
+  icon: "fa-brands fa-twitter"
+  url: "https://twitter.com/jusnaryy"
 # your soft skills
 # give the percentage between 50 to 100 with 5 intervals.
-# currently supported colors: blue, yellow, pink, green, sky, orange
-softSkills:
-  - name: Leadership
-    percentage: 85
-    color: yellow
-  - name: Team Work
-    percentage: 90
-    color: green
-  - name: Critical thinking
-    percentage: 85
-    color: yellow
-  - name: Creativity
-    percentage: 98
-    color: orange
-  - name: Problem solving
-    percentage: 98
-    color: pink
-  - name: Strong Analytical
-    perentage: 98
-    color: blue 
-  - name: Reporting
-    percentange: 98
-    color: green
-  - name: Communication
-    percentage: 98
-    color: blue
+badges:
+- type: certification
+  name: API Penetration Testing
+  url: "https://www.credly.com/badges/4a55c874-441b-4e47-b7b5-08bb667b71c3/linked_in_profile"
+  badge: "https://images.credly.com/size/680x680/images/44a5fe44-52e6-45c2-ae9a-41fd9183c81d/image.png"
+
+- type: soft-skill-indicator
+  name: Leadership
+  percentage: 85
+  color: blue
+
+- type: soft-skill-indicator
+  name: Team Work
+  percentage: 90
+  color: yellow
+
+- type: soft-skill-indicator
+  name: Hard Working
+  percentage: 85
+  color: orange
+
+- type: soft-skill-indicator
+  name: Critical thinking
+  percentage: 90
+  color: green

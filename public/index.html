@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta name="generator" content="Hugo 0.124.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>narycyber</title>
+    
+    
+      
+      
+        
+      
+    
+    <meta name="description" content="Discover the latest in cybersecurity with narycyber.com. Justus shares his expertise in topics like penetration testing, vulnerability assessment, and API testing. Explore his portfolio and personal blog, complete with walkthroughs of labs from hack the box, PG play, vulnhub, and overthewire. Stay up-to-date with the latest industry trends and advancements. Get started today and enhance your cybersecurity skills." />
+    
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="/application.56db8f450c98e200698def311092699a83c036dcc75dfef2c8f412f8f80c47af.css" integrity="sha256-VtuPRQyY4gBpje8xEJJpmoPANtzHXf7yyPQS&#43;PgMR68=" />
+
+
+
+
+
+
+
+
+
+
+
+
+<meta property="og:title" content="Welcome to narycyber"/>
+<meta property="og:type" content="website"/>
+<meta property="og:description" content="Portfolio and personal blog of Justus Juvenary."/>
+<meta property="og:image" content="/images/author/justus.png">
+<meta property="og:url" content="http://localhost:1313/">
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="narycyber"/>
+<meta name="twitter:description" content=""/>
+
+
+
+    
+        
+            
+            
+                
+                
+                
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1QLV0H8G51"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-1QLV0H8G51', { 'anonymize_ip': false });
+}
+</script>
+
+            
+
+            
+            
+
+            
+            
+
+            
+            
+
+            
+
+            
+        
+    
+
+
+
+
+<script>
+      theme = localStorage.getItem('darkmode:color-scheme') || 'system';
+      if (theme == 'system') {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          theme = 'dark';
+        } else {
+          theme = 'light';
+        }
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#top-navbar" data-bs-offset="100">
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-xl top-navbar shadow transparent-navbar homepage" id="top-navbar">
+  <div class="container">
+    
+    <a class="navbar-brand" href="/">
+      narycyber</a>
+    <button
+      class="navbar-toggler navbar-dark"
+      id="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#top-nav-items"
+      aria-label="menu"
+    >
+      <i data-feather="menu"></i>
+    </button>
+
+    <div class="collapse navbar-collapse dynamic-navbar" id="top-nav-items">
+      <ul class="nav navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#home">Home</a>
+        </li>
+        
+          
+          
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="#about">About</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="#skills">Skills</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="#recent-posts">Recent Posts</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="#experiences">Experiences</a>
+                </li>
+              
+            
+          
+        
+        
+          <div id="top-navbar-divider"></div>
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" id="blog-link" href="/posts">Posts</a>
+          </li>
+        
+        
+        
+            
+        
+        
+        
+          <li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle"  href="#" id="themeSelector" role="button"
+  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <img id="navbar-theme-icon-svg" class="theme-icon" src="/icons/moon-svgrepo-com.svg" width=20 alt="Dark Theme">
+</a>
+<div id="themeMenu" class="dropdown-menu dropdown-menu-icons-only" aria-labelledby="themeSelector">
+  <a class="dropdown-item nav-link" href="#" data-scheme="light">
+    <img class="theme-icon" src="/icons/sun-svgrepo-com.svg" width=20 alt="Light Theme">
+  </a>
+  <a class="dropdown-item nav-link" href="#" data-scheme="dark">
+    <img class="theme-icon" src="/icons/moon-svgrepo-com.svg" width=20 alt="Dark Theme">
+  </a>
+  <a class="dropdown-item nav-link" href="#" data-scheme="system">
+    <img class="theme-icon" src="/icons/computer-svgrepo-com.svg" width=20 alt="System Theme">
+  </a>
+</div>
+</li>
+
+        
+      </ul>
+    </div>
+  </div>
+  
+  
+  
+</nav>
+
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid home" id="home">
+  <style>
+     
+    #homePageBackgroundImageDivStyled {
+      background-image: url('/images/tech2_hu5f4b94ad83c546796a474c08f0bc39fd_337842_500x0_resize_q75_box.jpg');
+    }
+     
+    @media (min-width: 500px) and (max-width: 800px) {  
+      #homePageBackgroundImageDivStyled {   
+          background-image: url('/images/tech2_hu5f4b94ad83c546796a474c08f0bc39fd_337842_800x0_resize_q75_box.jpg');
+        }
+    }
+    @media (min-width: 801px) and (max-width: 1200px) {  
+      #homePageBackgroundImageDivStyled {   
+          background-image: url('/images/tech2_hu5f4b94ad83c546796a474c08f0bc39fd_337842_1200x0_resize_q75_box.jpg');
+        }
+    }
+    @media (min-width: 1201px) and (max-width: 1500px) {  
+      #homePageBackgroundImageDivStyled {   
+          background-image: url('/images/tech2_hu5f4b94ad83c546796a474c08f0bc39fd_337842_1500x0_resize_q75_box.jpg');
+        }
+    }
+    @media (min-width: 1501px) {  
+      #homePageBackgroundImageDivStyled {   
+          background-image: url('/images/tech2.jpg');
+        }
+    }
+    </style>
+    <span class="on-the-fly-behavior"></span>
+  <div
+    id="homePageBackgroundImageDivStyled"
+    class="background container-fluid"
+  ></div>
+  <div class="container content text-center">
+    <img src="/images/author/justus_hu21da735d27193e38d6c7d690c3134560_66867_148x148_fit_box_3.png"
+      class="rounded-circle mx-auto d-block img-fluid"
+      alt="Author Image"
+    />
+    <h1 class="greeting"> Hi, I am Justus</h1>
+    
+    <div class="typing-carousel">
+      <span id="ityped" class="ityped"></span>
+      <span class="ityped-cursor"></span>
+    </div>
+    <ul id="typing-carousel-data">
+      
+        
+          <li>I am a Cybersecurity Researcher</li>
+        
+          <li>I am a Penetration tester</li>
+        
+          <li>I open to potential Colloboration</li>
+        
+          <li>Let&#39;s connect</li>
+        
+      
+    </ul>
+    
+      
+        
+        
+          
+        
+        <a href="#about" class="arrow-center" aria-label="Read More - Justus"><i class="arrow bounce fa fa-chevron-down"></i></a>
+      
+    
+  </div>
+</div>
+
+    
+    
+      
+    
+
+    
+      
+      
+        
+          <div class="container-fluid section-holder d-flex bg-primary">
+            
+
+  
+
+
+
+
+  
+
+
+<div class="container anchor p-lg-5 about-section" id="about">
+  <div class="row pt-sm-2 pt-md-4 align-self-center">
+    
+    
+     <div class="col-sm-6"> 
+      <h3 class="p-1">Justus Juvenary</h3>
+      
+      <h5 class="p-1">
+        Cybersecurity Researcher
+        
+      </h5>
+      
+      <p class="p-1 text-justify">
+        <p>I&rsquo;m Justus Juvenary, a dedicated and results-driven cybersecurity professional with a Bachelor&rsquo;s degree in information security and over three years of industry experience. Skilled in web application security, API penetration testing, DevSecOps, risk assessments, and compliance frameworks like GDPR, PCI DSS, and HIPAA. Beyond my professional work, I share my knowledge and insights through this blog focused on offensive security, contributing to the industry&rsquo;s collective knowledge. I enjoy learning from other professionals, believing in the power of collaboration and continuous improvement.</p>
+<p>Driven by my passion for cybersecurity, I constantly enhance my skills to stay ahead. With expertise in penetration testing, I proactively identify vulnerabilities and secure systems, always seeking ways to become better at what I do. I am eager to connect and collaborate with industry professionals, learning from their experiences and expertise. Together, we can advance cybersecurity practices and build a secure future. Let&rsquo;s connect and explore how I can contribute to your organization&rsquo;s security initiatives.</p>
+
+      </p>
+      <div class="text-container ms-auto">
+        <ul class="social-link d-flex">
+          
+          <li>
+            
+              <a href="mailto:jusnary1@gmail.com" title="Email" target="_blank" rel="noopener"><i class="fas fa-envelope"></i></a>
+            
+          </li>
+          
+          <li>
+            
+              <a href="https://github.com/jusnary" title="Github" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+            
+          </li>
+          
+          <li>
+            
+              <a href="https://www.linkedin.com/in/justus-juvenary" title="linkedin" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+            
+          </li>
+          
+          <li>
+            
+              <a href="https://twitter.com/jusnaryy" title="Twitter" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a>
+            
+          </li>
+          
+        </ul>
+      </div>
+      
+      
+    </div>
+    
+    <div class="col-sm-6 pt-5 ps-md-4 ps-sm-3 pt-sm-0">
+      <div class="row">
+        
+          <div class="col-6 col-lg-4 p-2">
+
+    
+    <div class="certificate-badge">
+      <a href="https://www.credly.com/badges/4a55c874-441b-4e47-b7b5-08bb667b71c3/linked_in_profile" target="_blank" rel="noopener noreferrer">
+       <img src="https://images.credly.com/size/680x680/images/44a5fe44-52e6-45c2-ae9a-41fd9183c81d/image.png" alt="API Penetration Testing" />
+      </a>
+    </div>
+
+</div>
+
+        
+          <div class="col-6 col-lg-4 p-2">
+
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    <div class="circular-progress blue">
+    <span class="circular-progress-left">
+        <span
+        class="circular-progress-bar circular-progress-percentage-35  circular-progress-percentage-50-delay"
+        
+        ></span>
+    </span>
+    <span class="circular-progress-right">
+        <span
+        class="circular-progress-bar circular-progress-percentage-50"
+        
+        ></span>
+    </span>
+    <div class="circular-progress-value">Leadership</div>
+    </div>
+
+</div>
+
+        
+          <div class="col-6 col-lg-4 p-2">
+
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    <div class="circular-progress yellow">
+    <span class="circular-progress-left">
+        <span
+        class="circular-progress-bar circular-progress-percentage-40  circular-progress-percentage-50-delay"
+        
+        ></span>
+    </span>
+    <span class="circular-progress-right">
+        <span
+        class="circular-progress-bar circular-progress-percentage-50"
+        
+        ></span>
+    </span>
+    <div class="circular-progress-value">Team Work</div>
+    </div>
+
+</div>
+
+        
+          <div class="col-6 col-lg-4 p-2">
+
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    <div class="circular-progress orange">
+    <span class="circular-progress-left">
+        <span
+        class="circular-progress-bar circular-progress-percentage-35  circular-progress-percentage-50-delay"
+        
+        ></span>
+    </span>
+    <span class="circular-progress-right">
+        <span
+        class="circular-progress-bar circular-progress-percentage-50"
+        
+        ></span>
+    </span>
+    <div class="circular-progress-value">Hard Working</div>
+    </div>
+
+</div>
+
+        
+          <div class="col-6 col-lg-4 p-2">
+
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    <div class="circular-progress green">
+    <span class="circular-progress-left">
+        <span
+        class="circular-progress-bar circular-progress-percentage-40  circular-progress-percentage-50-delay"
+        
+        ></span>
+    </span>
+    <span class="circular-progress-right">
+        <span
+        class="circular-progress-bar circular-progress-percentage-50"
+        
+        ></span>
+    </span>
+    <div class="circular-progress-value">Critical thinking</div>
+    </div>
+
+</div>
+
+        
+        
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          </div>
+          
+          
+            
+          
+        
+      
+        
+          <div class="container-fluid section-holder d-flex bg-secondary">
+            
+
+  
+
+
+<div class="container-fluid anchor pb-5 skills-section">
+  
+    <h1 class="text-center">
+        <span id="skills"></span>Skills</h1>
+  
+  <div class="container d-flex-block">
+    <div class="row" id="primary-skills">
+      
+        <div class="col-xs-12 col-sm-6 col-lg-4 pt-2">
+  <a class="text-decoration-none" >
+    <div class="card">
+      <div class="card-head d-flex">
+        
+          
+          
+          
+            
+          
+        
+          <img class="card-img-xs" src="/images/sections/skills/pentest_hu9bab4127d2058406e48adb8bb826067e_2712_24x24_fit_box_3.png" alt="Penetration testing" />
+          <h5 class="card-title">Penetration testing</h5>
+        
+      </div>
+      <div class="card-body">
+        <p class="card-text">Perform simulated cyberattacks used to assess an organisation’s security infrastructure including web-based applications, systems, and networks to detect actual and potential vulnerabilities.</p>
+      </div>
+    </div>
+  </a>
+</div>
+
+      
+        <div class="col-xs-12 col-sm-6 col-lg-4 pt-2">
+  <a class="text-decoration-none" >
+    <div class="card">
+      <div class="card-head d-flex">
+        
+          
+          
+          
+            
+          
+        
+          <img class="card-img-xs" src="/images/sections/skills/api-picture_hu8d588edeae4cb377f771fe966a4579aa_7627_24x24_fit_box_3.png" alt="Api security" />
+          <h5 class="card-title">Api security</h5>
+        
+      </div>
+      <div class="card-body">
+        <p class="card-text">Experienced in API security with expertise in identifying and mitigating vulnerabilities in API systems using industry-standard best practices, testing tools, and encryption protocols.</p>
+      </div>
+    </div>
+  </a>
+</div>
+
+      
+        <div class="col-xs-12 col-sm-6 col-lg-4 pt-2">
+  <a class="text-decoration-none" >
+    <div class="card">
+      <div class="card-head d-flex">
+        
+          <h5 class="card-title">Familiarity with penetration testing tools</h5>
+        
+      </div>
+      <div class="card-body">
+        <p class="card-text">Knowledge and experience using various penetration testing tools such as Nmap, Metasploit, Burp Suite, Nessus, OWASP- ZAP, Wireshark, Hydra, Sqlmap and John-Ripper</p>
+      </div>
+    </div>
+  </a>
+</div>
+
+      
+        <div class="col-xs-12 col-sm-6 col-lg-4 pt-2">
+  <a class="text-decoration-none" href="https://www.python.org/" title="Proficient in Kali linux and Python" target="_blank" rel="noopener">
+    <div class="card">
+      <div class="card-head d-flex">
+        
+          <h5 class="card-title">Proficient in Kali linux and Python</h5>
+        
+      </div>
+      <div class="card-body">
+        <p class="card-text">Kali Linux and Python for penetration testing and vulnerability identification, including proficiency in scripting, and automation. I am able to apply my knowledge of these technologies to identify vulnerabilities and provide actionable solutions to mitigate them.</p>
+      </div>
+    </div>
+  </a>
+</div>
+
+      
+        <div class="col-xs-12 col-sm-6 col-lg-4 pt-2">
+  <a class="text-decoration-none" >
+    <div class="card">
+      <div class="card-head d-flex">
+        
+          <h5 class="card-title">DevSecOps</h5>
+        
+      </div>
+      <div class="card-body">
+        <p class="card-text">secure coding, vulnerability management, security automation, CI/CD integration, threat modeling, security testing, compliance knowledge, cloud security, secure infrastructure design, incident response, and security monitoring.</p>
+      </div>
+    </div>
+  </a>
+</div>
+
+      
+        <div class="col-xs-12 col-sm-6 col-lg-4 pt-2">
+  <a class="text-decoration-none" >
+    <div class="card">
+      <div class="card-head d-flex">
+        
+          <h5 class="card-title">ITIL 4 Framework</h5>
+        
+      </div>
+      <div class="card-body">
+        <p class="card-text">Service management practices, strategic planning, service design, service transition, service operation, continual improvement, and fostering a culture of collaboration and customer-centricity</p>
+      </div>
+    </div>
+  </a>
+</div>
+
+      
+    </div>
+  </div>
+</div>
+
+          </div>
+          
+          
+            
+          
+        
+      
+        
+          <div class="container-fluid section-holder d-flex bg-primary">
+            
+
+  
+
+
+
+
+
+
+<div class="container-fluid anchor pb-5 recent-posts-section">
+  
+    <h1 class="text-center">
+        <span id="recent-posts"></span>Recent Posts</h1>
+  
+  <div class="container">
+    <div class="row" id="recent-post-cards">
+      
+        <div class="post-card">
+  <div class="card">
+    <div class="card-head">
+      <a href="/posts/privilege-escalation/linux/sudo-exploitation/" class="post-card-link">
+        <img class="card-img-top" src='/posts/privilege-escalation/linux/sudo-exploitation/hero.jpg' alt="Hero Image">
+      </a>
+    </div>
+    <div class="card-body">
+      <a href="/posts/privilege-escalation/linux/sudo-exploitation/" class="post-card-link">
+        <h5 class="card-title">Escalating Privileges with Sudo</h5>
+        <p class="card-text post-summary">Sudo is a powerful command in Linux that allows users to run commands with elevated privileges. When properly configured, sudo can help ensure system security by enabling users to perform only authorised tasks and preventing unauthorised changes to system files. However, if not configured correctly, sudo can be exploited to escalate privileges and gain access to sensitive system files. In this article, we&rsquo;ll take a deep dive into sudo and explore some common privilege escalation techniques that attackers can use to exploit sudo.</p>
+      </a>
+      
+    </div>
+    <div class="card-footer">
+      <span class="float-start">
+          Monday, May 15, 2023
+          </span>
+      <a
+      href="/posts/privilege-escalation/linux/sudo-exploitation/"
+      class="float-end btn btn-outline-info btn-sm">Read</a>
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-card">
+  <div class="card">
+    <div class="card-head">
+      <a href="/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/" class="post-card-link">
+        <img class="card-img-top" src='/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/hero.png' alt="Hero Image">
+      </a>
+    </div>
+    <div class="card-body">
+      <a href="/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/" class="post-card-link">
+        <h5 class="card-title">OWASP API Security Top 10 via VAPI Walkthrough</h5>
+        <p class="card-text post-summary">According to a Gartner report in 2020 APIs account for 90% of the attack surface and are the most frequent attack vector.
+APIs often handle sensitive data, such as personal information, financial data, and intellectual property. If an API is not properly secured, this data can be easily accessed and stolen by hackers. In fact, some of the recent big data breaches have been due to under-protected APIs.
+In this blog post, I am going to discuss OWASP top 10 API 2019 vulnerabilities by using VAPI.</p>
+      </a>
+      
+    </div>
+    <div class="card-footer">
+      <span class="float-start">
+          Friday, April 28, 2023
+          </span>
+      <a
+      href="/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/"
+      class="float-end btn btn-outline-info btn-sm">Read</a>
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-card">
+  <div class="card">
+    <div class="card-head">
+      <a href="/posts/privilege-escalation/windows/service-misconfigurations/" class="post-card-link">
+        <img class="card-img-top" src='/posts/privilege-escalation/windows/service-misconfigurations/hero.png' alt="Hero Image">
+      </a>
+    </div>
+    <div class="card-body">
+      <a href="/posts/privilege-escalation/windows/service-misconfigurations/" class="post-card-link">
+        <h5 class="card-title">Service Misconfiguration</h5>
+        <p class="card-text post-summary">Privilege escalation is a common technique used by penetration testers to test unauthorised access to a system. One way to achieve privilege escalation is through service misconfigurations in Windows.
+A service is a program that runs in the background on a Windows system, and it can have a variety of functions such as managing network connections, printing, or running scheduled tasks. Services can be configured to run under different user accounts, and some may have higher privileges than others.</p>
+      </a>
+      
+    </div>
+    <div class="card-footer">
+      <span class="float-start">
+          Thursday, February 23, 2023
+          </span>
+      <a
+      href="/posts/privilege-escalation/windows/service-misconfigurations/"
+      class="float-end btn btn-outline-info btn-sm">Read</a>
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+  </div>
+  
+</div>
+
+          </div>
+          
+          
+            
+          
+        
+      
+        
+          <div class="container-fluid section-holder d-flex bg-secondary">
+            
+
+  
+
+
+<div class="container-fluid anchor pb-5 experiences-section">
+  
+    <h1 class="text-center">
+        <span id="experiences"></span>Experiences</h1>
+  
+
+  <div class="container timeline text-justify">
+   
+   
+     
+       <div class="row align-items-center  d-flex">
+         <div class="col-1 col-lg-2 text-center vertical-line d-inline-flex justify-content-center">
+  <div class="circle fw-bold">1</div>
+</div>
+
+         <div class="col-10 col-lg-8">
+    <div class="experience-entry-heading">
+        
+        
+        
+        
+        
+        
+        <div class="company-heading">
+            <h5><a href=https://cyberprotectafrica.com/ title="CyberProtect-Africa" target="_blank" rel="noopener">CyberProtect-Africa</a></h5>
+            <p class="text-muted">
+                January 2023 - Present
+            </p>
+        </div>
+        <p class="text-muted">
+            <i class="fa-solid fa-location-dot"></i> Kaluta street, Kisutu Dar es salaam
+        </p>
+        
+        <p>CyberProtect Africa offers tailored cybersecurity training and awareness solutions for organizations across Africa. We ensure your protection through employee training, simulated attacks, and personalized recommendations, keeping your business safe from cyber threats.</p>
+    </div>
+    
+    <div class="positions">
+    
+        <div class="company-heading">
+            <h5 class="designation">Cybersecurity Lead</h5>
+            <p class="text-muted">January 2023 -  Present </p>
+        </div>
+        
+        
+            <h6 class="text-heading">Responsibilities:</h6>
+            <ul class="justify-content-around">
+                
+                    <li>Policy &amp; Compliance. Develop and implement tailored security policies to ensure compliance with standards like PCI DSS, GDPR, and HIPAA. This minimises legal risks and enhances business credibility.</li>
+                
+                    <li>Risk Assessment. Conduct precise security assessments, including web app penetration testing, API penetration testing, and penetration testing, pinpointing vulnerabilities. Clients&rsquo; assets remain secure, reducing the potential for costly breaches.</li>
+                
+                    <li>Training &amp; Awareness. Create industry-specific training materials and programs, also available in local languages. This empowers client teams, reduces security incidents, and has successfully reduced the two most prevalent cyberattacks in Africa, phishing and business email compromise, along with other forms of social engineering attacks</li>
+                
+                    <li>Phishing Testing. Execute targeted phishing simulations to enhance employee awareness. This results in employees becoming more vigilant, which leads to fewer successful phishing attempts, significantly reducing the risk of data breaches.</li>
+                
+                    <li>Innovation &amp; Trends. Foster innovation and stay updated on emerging trends. Proactive measures keep clients ahead of evolving threats, safeguarding their operations.</li>
+                
+            </ul>
+        
+    
+    </div>
+</div>
+
+       </div>
+     
+     
+       <div class="row horizontal-line">
+  <div class="col-1 col-lg-2 timeline-side-div">
+    <div class="corner"></div>
+  </div>
+  <div class="col-10 col-lg-8">
+    <hr />
+  </div>
+  <div class="col-1 col-lg-2 timeline-side-div">
+    <div class="corner"></div>
+  </div>
+</div>
+
+     
+   
+     
+       <div class="row align-items-center justify-content-end d-flex">
+         <div class="col-10 col-lg-8">
+    <div class="experience-entry-heading">
+        
+        
+        
+        
+        
+        
+        <div class="company-heading">
+            <h5>CARRY Popote-Chochote</h5>
+            <p class="text-muted">
+                April 2021 - Dec 2022
+            </p>
+        </div>
+        <p class="text-muted">
+            <i class="fa-solid fa-location-dot"></i> Mwenge Dar Es Salaam
+        </p>
+        
+        <p>Logistics Technology company.</p>
+    </div>
+    
+    <div class="positions">
+    
+        <div class="company-heading">
+            <h5 class="designation">Technical Lead</h5>
+            <p class="text-muted">Nov 2021 -  Dec 2022 </p>
+        </div>
+        
+        
+            <h6 class="text-heading">Responsibilities:</h6>
+            <ul class="justify-content-around">
+                
+                    <li>Technology Planning. Developed and executed a comprehensive long-term security strategic technology plan, aligning our IT initiatives with the company&rsquo;s vision of reliable and secure parcel delivery. Additionally, I took on the role of Scrum Master, facilitating collaboration between our app development team and a startup management team with diverse backgrounds.</li>
+                
+                    <li>Vendor Partnerships and Payment Gateway Implementation. I was responsible for negotiating with various API providers for seamless collection from customers and disbursement of payments to drivers. This strategic effort resulted in the selection of the most suitable API provider. I worked closely with this provider and our development team to successfully implement a robust payment gateway within the app, enhancing our payment processing capabilities and customer experience.</li>
+                
+                    <li>Compliance Implementation (GDPR and PCI DSS). Collaborated extensively with the chosen payment gateway API provider and our internal development team to ensure GDPR and PCI DSS compliance within our app. This included rigorous assessments and adjustments to data handling and security measures, strengthening our commitment to safeguarding customer data and maintaining regulatory compliance.</li>
+                
+                    <li>Technology Innovation. Successfully tested and implemented new technologies to improve the performance and user experience of our parcel delivery app, ensuring swift and secure deliveries.</li>
+                
+                    <li>CEO Guidance. Provided crucial technology guidance to the CEO, ensuring that our technology strategy seamlessly integrated with the company&rsquo;s mission of efficient and secure parcel delivery.</li>
+                
+                    <li>Technology Alignment. Aligned the company&rsquo;s technology vision with its overarching goals and objectives, ensuring that our app-driven parcel delivery services remained at the forefront of the industry.</li>
+                
+            </ul>
+        
+    
+        <div class="company-heading">
+            <h5 class="designation">Penetration Tester</h5>
+            <p class="text-muted">April 2021 -  Dec 2022 </p>
+        </div>
+        
+        
+            <h6 class="text-heading">Responsibilities:</h6>
+            <ul class="justify-content-around">
+                
+                    <li>Penetration Testing. Conducting thorough penetration testing exercises tailored to our delivery app to identify vulnerabilities and enhance its security.</li>
+                
+                    <li>Security Reports. Providing detailed vulnerability reports and recommending remediation strategies specific to our delivery platform, ensuring the continued reliability of our services.</li>
+                
+                    <li>Security Culture. Encouraging a stronger security culture within our technical teams to safeguard the integrity of our app and customer data.</li>
+                
+                    <li>Secure Software Development. Promoting a secure software development framework for our app and training our developers in secure coding best practices to prevent disruptions in parcel deliveries.</li>
+                
+                    <li>Flaw Alerting. Promptly alerting our development teams about any identified flaws or vulnerabilities that could affect the seamless operation of our delivery app.</li>
+                
+            </ul>
+        
+    
+    </div>
+</div>
+
+         <div class="col-1 col-lg-2 text-center vertical-line d-inline-flex justify-content-center">
+  <div class="circle fw-bold">2</div>
+</div>
+
+       </div>
+     
+     
+       <div class="row horizontal-line">
+  <div class="col-1 col-lg-2 timeline-side-div">
+    <div class="corner"></div>
+  </div>
+  <div class="col-10 col-lg-8">
+    <hr />
+  </div>
+  <div class="col-1 col-lg-2 timeline-side-div">
+    <div class="corner"></div>
+  </div>
+</div>
+
+     
+   
+     
+       <div class="row align-items-center  d-flex">
+         <div class="col-1 col-lg-2 text-center vertical-line d-inline-flex justify-content-center">
+  <div class="circle fw-bold">3</div>
+</div>
+
+         <div class="col-10 col-lg-8">
+    <div class="experience-entry-heading">
+        
+        
+        
+        
+        
+        
+        <div class="company-heading">
+            <h5><a href=https://tyd.or.tz/ title="TYD Innovation Incubator" target="_blank" rel="noopener">TYD Innovation Incubator</a></h5>
+            <p class="text-muted">
+                June 2019 - March 2021
+            </p>
+        </div>
+        <p class="text-muted">
+            <i class="fa-solid fa-location-dot"></i> Ilala Dar Es Salaam
+        </p>
+        
+        <p>TYD Innovation Incubator is a Start-up Innovation Incubator with the solely purpose of providing mentorship to youths who aspire to become outstandingly competent thus enormously contribute to Tanzania&rsquo;s Socio-economic development.</p>
+    </div>
+    
+    <div class="positions">
+    
+        <div class="company-heading">
+            <h5 class="designation">Junior System Developer</h5>
+            <p class="text-muted">June 2019 -  March 2021 </p>
+        </div>
+        
+        
+            <h6 class="text-heading">Responsibilities:</h6>
+            <ul class="justify-content-around">
+                
+                    <li>Created a backend online platform called Prasdel with Lavavel, MySQL, and Apache2.</li>
+                
+                    <li>Enabled students to acquire practical training and attachments.</li>
+                
+            </ul>
+        
+    
+    </div>
+</div>
+
+       </div>
+     
+     
+   
+  </div>
+</div>
+
+          </div>
+          
+          
+            
+          
+        
+      
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+
+  
+  
+  
+    
+  
+
+  
+  
+  
+
+  
+  
+  
+    
+  
+  
+
+  
+  
+  
+
+  <footer id="footer" class="container-fluid text-center align-content-center footer pb-2">
+    <div class="container pt-5">
+      <div class="row text-start">
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>Navigation</h5>
+          
+          <ul>
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#about">About</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#skills">Skills</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#recent-posts">Recent Posts</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#experiences">Experiences</a>
+                </li>
+              
+            
+              
+                
+              
+            
+          </ul>
+          
+        </div>
+        
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>Contact me:</h5>
+          <ul>
+            
+              
+                <li><a href=mailto:jusnary1@gmail.com target="_blank" rel="noopener">
+                  <span><i class="fas fa-envelope"></i></span> <span>jusnary1@gmail.com</span>
+                </a></li>
+              
+            
+              
+                <li>
+                  
+                  <a href=https://www.linkedin.com/in/justus-juvenary target="_blank" rel="noopener">
+                    <span><i class=fab&#32;fa-linkedin></i></span> <span>Justus Juvenary</span>
+                  </a>
+                  
+                </li>
+              
+            
+          </ul>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+    
+    
+    <hr />
+    <div class="container">
+      <div class="row text-start">
+        <div class="col-md-4">
+          <a id="theme" href="https://www.linkedin.com/in/justus-juvenary/" target="_blank" rel="noopener">
+            Justus Juvenary
+          </a>
+        </div>
+        <div class="col-md-4 text-center">© 2024 Copyright.</div>
+        <div class="col-md-4 text-end">
+          <a id="hugo" href="https://www.narycyber.com/" target="_blank" rel="noopener">
+            NaryCyber
+          </a>
+        </div>
+      </div>
+    </div>
+    
+  </footer>
+
+
+    <script src="/application.b91ad4f8dcfc23b15c9ba98e2b039a62fd05938843f9092a89760a31bc5b2cd4.js" integrity="sha256-uRrU&#43;Nz8I7Fcm6mOKwOaYv0Fk4hD&#43;QkqiXYKMbxbLNQ=" defer></script>
+
+
+    
+</body>
+</html>

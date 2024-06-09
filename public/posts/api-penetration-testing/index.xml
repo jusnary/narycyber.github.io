@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>API Penetration Testing on narycyber</title>
+    <link>http://localhost:1313/posts/api-penetration-testing/</link>
+    <description>Recent content in API Penetration Testing on narycyber</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Apr 2023 16:13:35 +0300</lastBuildDate><atom:link href="http://localhost:1313/posts/api-penetration-testing/index.xml" rel="self" type="application/rss+xml" /><item>
+      <title>OWASP API Security Top 10 via VAPI Walkthrough</title>
+      <link>http://localhost:1313/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/</link>
+      <pubDate>Fri, 28 Apr 2023 16:13:35 +0300</pubDate>
+      
+      <guid>http://localhost:1313/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/</guid>
+      <description>According to a Gartner report in 2020 APIs account for 90% of the attack surface and are the most frequent attack vector.
+APIs often handle sensitive data, such as personal information, financial data, and intellectual property. If an API is not properly secured, this data can be easily accessed and stolen by hackers. In fact, some of the recent big data breaches have been due to under-protected APIs.
+In this blog post, I am going to discuss OWASP top 10 API 2019 vulnerabilities by using VAPI.</description>
+    </item>
+    
+    
+  </channel>
+</rss>

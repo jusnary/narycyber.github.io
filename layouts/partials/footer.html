@@ -3,7 +3,7 @@
 {{ $navigationEnabled  := site.Params.footer.navigation.enable  | default true }}
 {{ $customMenusEnabled := site.Params.footer.navigation.customMenus | default true }}
 {{ $contactMeEnabled   := site.Params.footer.contactMe.enable   | default true }}
-{{ $newsletterEnabled  := site.Params.footer.newsletter.enable  | default true }}
+{{ $newsletterEnabled  := site.Params.footer.newsletter.enable  | default false }}
 {{ $credentialsEnabled := site.Params.footer.credentials.enable | default true }}
 {{ $disclaimerEnabled  := site.Params.footer.disclaimer.enable  | default false }}
 
@@ -66,7 +66,7 @@
 
   <footer id="footer" class="container-fluid text-center align-content-center footer pb-2">
     <div class="container pt-5">
-      <div class="row text-left">
+      <div class="row text-start">
         {{ if $navigationEnabled }}
         <div class="col-md-4 col-sm-12">
           <h5>{{ i18n "navigation" }}</h5>
@@ -115,6 +115,10 @@
                 <li><a href={{ printf "https://github.com/%s" $value }} target="_blank" rel="noopener">
                   <span><i class="fab fa-github"></i></span> <span>{{ $value }}</span>
                 </a></li>
+              {{ else if (eq $key "researchgate") }}
+                <li><a href={{ printf "https://www.researchgate.net/profile/%s" $value }} target="_blank" rel="noopener">
+                  <span><i class="fab fa-researchgate"></i></span> <span>{{ $author.name }}</span>
+                </a></li>            
               {{ else if reflect.IsMap $value }}
                 <li>
                   {{ if (and (isset $value "url") (isset $value "icon"))}}
@@ -169,7 +173,7 @@
               <form method='post' action='https://blogtrottr.com'>
               <div class="form-group">
               <input type='email' class="form-control" name='btr_email' placeholder="{{ i18n "newsletter_input_placeholder" }}"/><br />
-              <input type='hidden' name='btr_url' value='{{ "" | absLangURL }}index.xml' />
+              <input type='hidden' name='btr_url' value='{{ "" | absLangURL }}/index.xml' />
               <input type='hidden' name='schedule_type' value='1' />
               <small id="emailHelp" class="form-text text-muted">{{ i18n "newsletter_warning" }}</small>
               <button type="submit" class="btn btn-info"> {{ i18n "submit" }} </button>
@@ -189,14 +193,14 @@
     {{ if $credentialsEnabled }}
     <hr />
     <div class="container">
-      <div class="row text-left">
+      <div class="row text-start">
         <div class="col-md-4">
           <a id="theme" href="https://www.linkedin.com/in/justus-juvenary/" target="_blank" rel="noopener">
             Justus Juvenary
           </a>
         </div>
         <div class="col-md-4 text-center">{{ $copyrightNotice | markdownify }}</div>
-        <div class="col-md-4 text-right">
+        <div class="col-md-4 text-end">
           <a id="hugo" href="https://www.narycyber.com/" target="_blank" rel="noopener">
             NaryCyber
           </a>

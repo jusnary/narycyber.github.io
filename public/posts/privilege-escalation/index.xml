@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Privilege Escalation on narycyber</title>
+    <link>http://localhost:1313/posts/privilege-escalation/</link>
+    <description>Recent content in Privilege Escalation on narycyber</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 May 2023 19:23:31 +0300</lastBuildDate><atom:link href="http://localhost:1313/posts/privilege-escalation/index.xml" rel="self" type="application/rss+xml" /><item>
+      <title>Escalating Privileges with Sudo</title>
+      <link>http://localhost:1313/posts/privilege-escalation/linux/sudo-exploitation/</link>
+      <pubDate>Mon, 15 May 2023 19:23:31 +0300</pubDate>
+      
+      <guid>http://localhost:1313/posts/privilege-escalation/linux/sudo-exploitation/</guid>
+      <description>Sudo is a powerful command in Linux that allows users to run commands with elevated privileges. When properly configured, sudo can help ensure system security by enabling users to perform only authorised tasks and preventing unauthorised changes to system files. However, if not configured correctly, sudo can be exploited to escalate privileges and gain access to sensitive system files. In this article, we&amp;rsquo;ll take a deep dive into sudo and explore some common privilege escalation techniques that attackers can use to exploit sudo.</description>
+    </item>
+    
+    <item>
+      <title>Service Misconfiguration</title>
+      <link>http://localhost:1313/posts/privilege-escalation/windows/service-misconfigurations/</link>
+      <pubDate>Thu, 23 Feb 2023 13:41:42 +0300</pubDate>
+      
+      <guid>http://localhost:1313/posts/privilege-escalation/windows/service-misconfigurations/</guid>
+      <description>Privilege escalation is a common technique used by penetration testers to test unauthorised access to a system. One way to achieve privilege escalation is through service misconfigurations in Windows.
+A service is a program that runs in the background on a Windows system, and it can have a variety of functions such as managing network connections, printing, or running scheduled tasks. Services can be configured to run under different user accounts, and some may have higher privileges than others.</description>
+    </item>
+    
+    <item>
+      <title>Windows Privilege Escalation lab</title>
+      <link>http://localhost:1313/posts/privilege-escalation/windows/setting-up-a-lab/</link>
+      <pubDate>Thu, 16 Feb 2023 13:41:42 +0300</pubDate>
+      
+      <guid>http://localhost:1313/posts/privilege-escalation/windows/setting-up-a-lab/</guid>
+      <description>A Step-by-Step Guide When it comes to privilege escalation, the biggest obstacle learners face is where to practice. Most of the time, this is a step that comes after performing all other steps like reconnaissance, scanning, and gaining low privilege user access. When I was looking to better understand privilege escalation, I wanted a lab where I could practice this step alone, without having to go through different steps to gain low privilege user access.</description>
+    </item>
+    
+    
+  </channel>
+</rss>

