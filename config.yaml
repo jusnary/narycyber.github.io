@@ -1,7 +1,7 @@
 baseURL: "https://www.narycyber.com/"
 
 languageCode: en-us
-title: "Narycyber"
+title: "naryCyber"
 
 # Use Hugo modules to add theme
 
@@ -72,7 +72,7 @@ params:
     
     #number of posts to show on pages.
     pagination:
-      maxPostsPerPage: 12
+      maxPostsPerPage: 8
 
     #analytics
     analytics:

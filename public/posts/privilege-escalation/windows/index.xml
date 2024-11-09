@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Windows on Narycyber</title>
+    <title>Windows on naryCyber</title>
     <link>http://localhost:1313/posts/privilege-escalation/windows/</link>
-    <description>Recent content in Windows on Narycyber</description>
+    <description>Recent content in Windows on naryCyber</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 23 Feb 2023 13:41:42 +0300</lastBuildDate><atom:link href="http://localhost:1313/posts/privilege-escalation/windows/index.xml" rel="self" type="application/rss+xml" /><item>

@@ -31,7 +31,7 @@
 }
 
 .post-card-holder .post-card {
-  width: calc(100% / 3);
+  width: calc(100% / 4);
   display: inline-flex;
 }
 
@@ -116,7 +116,7 @@
     margin-left: 0px;
   }
   .post-card-holder .post-card {
-    width: calc(100% / 3);
+    width: calc(100% / 4);
   }
 }
 
